@@ -17,8 +17,25 @@
 	<description>CS544 - Enterprise Architecture Hibernate Examples</description>
 
 	<modules>
-		<module>hibernate-00-shared</module>
-		<module>hibernate-01-helloworld</module>
+		<module>hibernate-shared</module>
+		<module>hibernate-00-helloworld</module>
+		<module>hibernate-01-entitymapping</module>
+		<module>hibernate-02-persistence-1</module>
+		<module>hibernate-02-persistence-2</module>
+		<module>hibernate-03-associations-1</module>
+		<module>hibernate-03-associations-2</module>
+		<module>hibernate-03-associations-3</module>
+		<module>hibernate-03-associations-4</module>
+		<module>hibernate-03-associations-5</module>
+		<module>hibernate-03-associations-6</module>
+		<module>hibernate-05-inheritance-1</module>
+		<module>hibernate-05-inheritance-2</module>
+		<module>hibernate-05-inheritance-3</module>
+		<module>hibernate-07-hql-1</module>
+		<module>hibernate-07-hql-2</module>
+		<module>hibernate-07-hql-3</module>
+		<module>hibernate-07-hql-4</module>
+		<module>hibernate-07-hql-5</module>
 	</modules>
 
 	<dependencyManagement>
