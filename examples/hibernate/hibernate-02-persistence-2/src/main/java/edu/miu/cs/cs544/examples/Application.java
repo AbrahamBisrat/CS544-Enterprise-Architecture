@@ -15,6 +15,7 @@ public class Application {
 		sessionFactory = HibernateUtils.getSessionFactory(Arrays.asList(Person.class));
 	}
 
+	@SuppressWarnings("resource")
 	public static void main(String[] args) {
 		// Hibernate placeholders
 		Session session = null;
@@ -43,7 +44,7 @@ public class Application {
 			session.saveOrUpdate(person1);
 			
 			// retrieve all persons
-			List<Person> personList = session.createQuery("from Person").list();
+			List<Person> personList = session.createQuery("from Person", Person.class).list();
 			for (Person p : personList) {
 				System.out.println(p);
 			}
@@ -52,8 +53,7 @@ public class Application {
 			tx.rollback();
 			e.printStackTrace();
 		} finally {
-			if (session != null)
-				session.close();
+			session.close();
 		}
 		
 		// Close the SessionFactory (not mandatory)

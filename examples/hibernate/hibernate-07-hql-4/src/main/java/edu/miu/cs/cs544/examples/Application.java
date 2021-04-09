@@ -5,10 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class Application {
 
@@ -56,25 +56,22 @@ public class Application {
             session.persist(toy4);
 
             // Query
-            Query query = session.createQuery("from Person");
-            @SuppressWarnings("unchecked")
+            Query<Person> query = session.createQuery("from Person", Person.class);
 			List<Person> persons = query.list();
             for (Person person : persons) {
                 System.out.println(person);
             }
             
-            Query query1 = session.createQuery("Select p from Person p join p.pets pet where pet.name='Meow'");
-            @SuppressWarnings("unchecked")
+            Query<Person> query1 = session.createQuery("Select p from Person p join p.pets pet where pet.name='Meow'", Person.class);
 			List<Person> result1 = query1.list();
             for (Person person : result1) {
                 System.out.println(person);
             }
             
-            Query query2 = session.createQuery("Select p from Pet p join p.toys t where p.person.name='John' and t.description='Ball'");
-            @SuppressWarnings("unchecked")
-			List<Person> result2 = query2.list();
-            for (Person person : result1) {
-                System.out.println(person);
+            Query<Pet> query2 = session.createQuery("Select p from Pet p join p.toys t where p.person.name='John' and t.description='Ball'", Pet.class);
+			List<Pet> result2 = query2.list();
+            for (Pet pet : result2) {
+                System.out.println(pet);
             }
             
             tx.commit();

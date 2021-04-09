@@ -5,7 +5,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class AppCar {
 
-    public static void main(String[] args) {
+    @SuppressWarnings("resource")
+	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("springconfig.xml");
 
 		CustomerService customerService = context.getBean("customerService", CustomerService.class);

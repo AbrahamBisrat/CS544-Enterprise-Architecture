@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class Application2 {
 
@@ -27,7 +27,7 @@ public class Application2 {
             tx = session.beginTransaction();
 
             // retieve all objects
-            Query query = session.createQuery("from java.lang.Object");
+            Query<Object> query = session.createQuery("from java.lang.Object", Object.class);
 			List<Object> objects = query.list();
             for (Object object : objects) {
                 System.out.println(object);

@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class Application1 {
 
@@ -17,7 +17,8 @@ public class Application1 {
 		sessionFactory = HibernateUtils.getSessionFactory(Arrays.asList(Country.class,City.class,Address.class,Customer.class));
 	}
 
-    public static void main(String[] args) {
+    @SuppressWarnings("unchecked")
+	public static void main(String[] args) {
         // Hibernate placeholders
         Session session = null;
         Transaction tx = null;
@@ -27,9 +28,8 @@ public class Application1 {
             tx = session.beginTransaction();
 
             // Query
-            Query query = session.getNamedQuery("Customer.All");
+            Query<Customer> query = session.getNamedQuery("Customer.All");
             query.setMaxResults(50);
-            @SuppressWarnings("unchecked")
 			List<Customer> customers = query.list();
             for (Customer customer : customers) {
                 System.out.println(customer);

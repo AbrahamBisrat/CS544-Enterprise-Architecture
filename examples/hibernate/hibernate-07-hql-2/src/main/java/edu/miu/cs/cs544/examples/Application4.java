@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class Application4 {
 
@@ -27,7 +27,7 @@ public class Application4 {
             tx = session.beginTransaction();
 
             // Query
-            Query query = session.createQuery("from Customer c where c.address.city.country.name = :countryName");
+            Query<Customer> query = session.createQuery("from Customer c where c.address.city.country.name = :countryName", Customer.class);
             query.setParameter("countryName", "United States");
 			List<Customer> customers = query.list();
             for (Customer customer : customers) {
