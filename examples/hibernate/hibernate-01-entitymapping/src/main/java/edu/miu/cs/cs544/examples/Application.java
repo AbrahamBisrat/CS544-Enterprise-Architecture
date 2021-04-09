@@ -46,7 +46,7 @@ public class Application {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 			// retrieve all persons
-			List<Person> personList = session.createQuery("from Person").list();
+			List<Person> personList = session.createQuery("from Person", Person.class).list();
 			for (Person p : personList) {
 				System.out.println(p);
 			}

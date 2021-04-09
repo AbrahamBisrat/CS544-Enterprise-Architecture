@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class Application1 {
 
@@ -17,7 +17,8 @@ public class Application1 {
 		sessionFactory = HibernateUtils.getSessionFactory(Arrays.asList(Actor.class,Film.class));
 	}
 
-    public static void main(String[] args) {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public static void main(String[] args) {
         // Hibernate placeholders
         Session session = null;
         Transaction tx = null;
@@ -29,7 +30,6 @@ public class Application1 {
             // Query
             Query query = session.getNamedQuery("Actor.All");
             query.setMaxResults(50);
-            @SuppressWarnings("unchecked")
 			List<Actor> actors = query.list();
             for (Actor actor : actors) {
                 System.out.println(actor);

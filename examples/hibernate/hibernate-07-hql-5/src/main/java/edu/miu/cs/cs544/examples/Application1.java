@@ -5,10 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class Application1 {
 
@@ -82,34 +82,30 @@ public class Application1 {
             s8.setCourseOffering(offering4);
 
             tx.commit();
-            System.out.println("Finished savig objects");
+            System.out.println("Finished saving objects");
             tx = session.beginTransaction();
 
             // Query
-            Query query = session.createQuery("from Person");
-            @SuppressWarnings("unchecked")
+            Query<Person> query = session.createQuery("from Person", Person.class);
 			List<Person> persons = query.list();
             for (Person person : persons) {
                 System.out.println(person);
             }
             
             //Query query1 = session.createQuery("Select f from Faculty f join f.course c where c.courseId = 'CS544'");
-            Query query1 = session.createQuery("Select p from Person p where p.class=Faculty AND p.course.courseId = 'CS544'");
-            @SuppressWarnings("unchecked")
+            Query<Faculty> query1 = session.createQuery("Select p from Person p where p.class=Faculty AND p.course.courseId = 'CS544'", Faculty.class);
 			List<Faculty> result1 = query1.list();
             for (Faculty f : result1) {
                 System.out.println(f);
             }
             
-            Query query2 = session.createQuery("Select s from Student s where s.courseOffering.course.courseId = 'CS544'");
-            @SuppressWarnings("unchecked")
+            Query<Student> query2 = session.createQuery("Select s from Student s where s.courseOffering.course.courseId = 'CS544'", Student.class);
 			List<Student> result2 = query2.list();
             for (Student s : result2) {
                 System.out.println(s);
             }
             
-            Query query3 = session.createQuery("Select s from Person s JOIN s.courseOffering c JOIN c.course c1 where s.class = Student AND c1.courseId = 'CS544'");
-            @SuppressWarnings("unchecked")
+            Query<Student> query3 = session.createQuery("Select s from Person s JOIN s.courseOffering c JOIN c.course c1 where s.class = Student AND c1.courseId = 'CS544'", Student.class);
 			List<Student> result3 = query3.list();
             for (Student s : result3) {
                 System.out.println(s);

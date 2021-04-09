@@ -2,7 +2,6 @@ package edu.miu.cs.cs544;
 
 import java.util.List;
 
-import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -28,9 +27,9 @@ public class CustomerDAO {
 		sessionFactory.getCurrentSession().delete(customer);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Customer> getCustomerList() {
-		Query q = sessionFactory.getCurrentSession().getNamedQuery("Customer.All");
-		return q.list();
+		return sessionFactory.getCurrentSession().getNamedQuery("Customer.All").list();
 	}
 
 }

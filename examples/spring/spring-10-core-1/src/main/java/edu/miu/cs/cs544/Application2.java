@@ -4,6 +4,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Application2 {
+	
+	@SuppressWarnings("resource")
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("springconfig.xml");
 		
@@ -18,4 +20,5 @@ public class Application2 {
 		System.out.println("customerService2 = " + customerService2);
 		System.out.println("second bean retrieved");
 	}
+	
 }

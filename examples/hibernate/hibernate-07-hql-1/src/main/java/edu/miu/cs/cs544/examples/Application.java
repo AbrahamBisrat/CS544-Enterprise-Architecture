@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class Application {
 
@@ -28,7 +28,7 @@ public class Application {
             tx = session.beginTransaction();
 
             // 1. retrieve the list of first 50 countries using a Hibernate query
-            Query query1 = session.createQuery("from Country c where c.id < 50");
+            Query<Country> query1 = session.createQuery("from Country c where c.id < 50", Country.class);
             List<Country> list1 = query1.list();
             System.out.println("\nList of first 50 countries:\n");
             for (Country country : list1) {
@@ -36,7 +36,7 @@ public class Application {
             }
             
             // 2. retrieve the list of ALL countries using a Hibernate named query
-            Query query2 = session.getNamedQuery("Country.All"); 
+            Query<Country> query2 = session.getNamedQuery("Country.All"); 
             List<Country> list2 = query2.list();
             System.out.println("\nList of ALL countries:\n");
             for (Country country : list2) {
@@ -44,8 +44,7 @@ public class Application {
             }
 
             // 3. query result size
-            Query query3 = session.getNamedQuery("Country.All");
-            
+            Query<Country> query3 = session.getNamedQuery("Country.All");            
             query3.setFirstResult(0);
             query3.setMaxResults(50);
             List<Country> list3 = query3.list();
@@ -63,7 +62,7 @@ public class Application {
             }
 
             // 4. query result size
-            Query query4 = session.createQuery("from Country c where c.id = :id");
+            Query<Country> query4 = session.createQuery("from Country c where c.id = :id", Country.class);
             query4.setParameter("id", 50L);
             Country country = (Country) query4.uniqueResult();
             System.out.print("\nCountry at index ") ; 

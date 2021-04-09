@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class Application3 {
 
@@ -27,10 +27,9 @@ public class Application3 {
             tx = session.beginTransaction();
 
             // Query
-            Query query = session.createQuery("Select Distinct a from Actor a left join fetch a.films f where f.rating like :rating");
+            Query<Actor> query = session.createQuery("Select Distinct a from Actor a left join fetch a.films f where f.rating like :rating", Actor.class);
             query.setParameter("rating", "PG%");
             query.setMaxResults(50);
-            @SuppressWarnings("unchecked")
 			List<Actor> actors = query.list();
             for (Actor actor : actors) {
                 System.out.println(actor);

@@ -41,7 +41,7 @@ public class Application {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 			// retrieve all employees
-			List<Employee> employeeList = session.createQuery("from Employee").list();
+			List<Employee> employeeList = session.createQuery("from Employee", Employee.class).list();
 			for (Employee emp : employeeList) {
 				System.out.println("firstname= " + emp.getFirstname() + ", lastname= " + emp.getLastname());
 			}
