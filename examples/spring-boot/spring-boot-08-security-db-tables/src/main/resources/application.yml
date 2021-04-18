@@ -21,7 +21,7 @@ logging:
   file:
     name: /Coding/Logging/${spring.application.name}/log
 server:
-  port: 80
+  port: 8008
   tomcat:
     accesslog:
       enabled: true

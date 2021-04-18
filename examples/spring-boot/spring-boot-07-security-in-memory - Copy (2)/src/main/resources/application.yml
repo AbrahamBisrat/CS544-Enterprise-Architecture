@@ -6,7 +6,7 @@ spring:
       name: username
       password: 123456
   datasource:
-    url: jdbc:sqlserver://10.10.10.15:1433;databaseName=AdventureWorks2019
+    url: jdbc:sqlserver://cs544.cs.miu.edu:1433;databaseName=AdventureWorks2019
     username: adventure
     password: AdventureWorks
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
