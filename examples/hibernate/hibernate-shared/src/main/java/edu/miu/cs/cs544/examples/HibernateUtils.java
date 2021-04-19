@@ -20,9 +20,9 @@ public class HibernateUtils {
             try {
                 Properties settings = new Properties();
                 settings.put(Environment.DRIVER, "com.microsoft.sqlserver.jdbc.SQLServerDriver");
-                settings.put(Environment.URL, "jdbc:sqlserver://cs544.cs.mum.edu:1433");
-                settings.put(Environment.USER, "611234");
-                settings.put(Environment.PASS, "611234");
+                settings.put(Environment.URL, "jdbc:sqlserver://cs544.cs.miu.edu:1433"); //10.10.10.15
+                settings.put(Environment.USER, "arbey");
+                settings.put(Environment.PASS, "April152021");
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.SQLServer2008Dialect");
 
                 settings.put(Environment.SHOW_SQL, "true");
