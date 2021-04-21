@@ -4,25 +4,22 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>edu.miu.cs.cs544</groupId>
-	<artifactId>cs544-codebase</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<parent>
+		<groupId>edu.miu.cs.cs544</groupId>
+		<artifactId>cs544-codebase</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
 
+	<artifactId>cs544-exercises</artifactId>
 	<packaging>pom</packaging>
 
-	<name>cs544-codebase</name>
-	<description>CS544 - Enterprise Architecture Codebase</description>
+	<name>cs544-exercises</name>
+	<description>CS544 - Enterprise Architecture Coding Exercises</description>
 
 	<modules>
-		<module>examples</module>
-		<module>exercises</module>
+		<module>exercise-01-1</module>
+		<module>exercise-02-1</module>
 	</modules>
-
-	<properties>
-		<java.version>1.8</java.version>
-		<maven.compiler.version>3.8.1</maven.compiler.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
 
 	<build>
 		<pluginManagement>
