@@ -1,4 +1,4 @@
-package edu.mum.cs.cs544.examples;
+package edu.miu.cs.cs544.examples;
 
 import java.util.StringTokenizer;
 
