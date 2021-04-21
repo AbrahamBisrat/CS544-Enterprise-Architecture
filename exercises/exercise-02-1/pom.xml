@@ -5,11 +5,11 @@
 
 	<parent>
 		<groupId>edu.miu.cs.cs544</groupId>
-		<artifactId>cs544-hibernate</artifactId>
+		<artifactId>cs544-exercises</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>hibernate-01-entitymapping</artifactId>
+	<artifactId>exercise-02-1</artifactId>
 
 	<packaging>jar</packaging>
 
