@@ -13,7 +13,7 @@ public class AppQueryAll {
     private static final SessionFactory sessionFactory;
     
     static {
-		sessionFactory = HibernateUtils.getSessionFactory(Arrays.asList(Country.class,City.class,Address.class));
+		sessionFactory = HibernateUtils2.getSessionFactory(Arrays.asList(CountryRegion.class,StateProvince.class));
 	}
 
 	public static void main(String[] args) {
