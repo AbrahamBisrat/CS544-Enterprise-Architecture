@@ -3,6 +3,7 @@ package edu.miu.cs.cs544.examples;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -12,11 +13,10 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Table(name = "Person.StateProvince")
-@NoArgsConstructor @Getter @Setter @ToString
+@NoArgsConstructor @Getter @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class StateProvince {
 	
@@ -27,7 +27,7 @@ public class StateProvince {
 	
 	private String stateProvinceCode;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "countryRegionCode")
 	private CountryRegion countryRegion;
 	

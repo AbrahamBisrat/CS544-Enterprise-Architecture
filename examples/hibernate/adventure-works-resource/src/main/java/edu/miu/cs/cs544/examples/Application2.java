@@ -1,6 +1,7 @@
 package edu.miu.cs.cs544.examples;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -8,7 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-public class Application1 {
+public class Application2 {
 
     private static final SessionFactory sessionFactory;
     
@@ -24,7 +25,7 @@ public class Application1 {
 			));
 	}
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void main(String[] args) {
         // Hibernate placeholders
         Session session = null;
@@ -34,16 +35,12 @@ public class Application1 {
             session = sessionFactory.openSession();
             tx = session.beginTransaction();
 
-            // Query
-            Query<BusinessEntity> query = session.createQuery("select be from BusinessEntity be where be.id = 292");
-			BusinessEntity businessEntity = query.uniqueResult();
-            System.out.println(businessEntity);
-            
-//            // Query
-//            Query<BusinessEntity> query2 = session.createQuery("Select be from BusinessEntity be where be.id > 292 AND be.id < 400");
-//			List<BusinessEntity> entityList = query2.list();
-//			entityList.forEach(System.out::println);
-            
+            // retieve all cars
+            Query query = session.createQuery("from CountryRegion where id = 'US'");
+			List<CountryRegion> countries = query.list();
+            for (CountryRegion country : countries) {
+                System.out.println(country);
+            }
             tx.commit();
 
         } catch (HibernateException e) {

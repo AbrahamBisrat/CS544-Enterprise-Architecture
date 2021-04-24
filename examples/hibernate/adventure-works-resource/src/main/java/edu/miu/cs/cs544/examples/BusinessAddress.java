@@ -3,6 +3,7 @@ package edu.miu.cs.cs544.examples;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -35,11 +36,11 @@ public class BusinessAddress {
 	@Column(name="City")
 	private String city;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "StateProvinceID")
 	private StateProvince stateProvince;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinTable(name = "Person.BusinessEntityAddress",
 		joinColumns = { @JoinColumn(name = "AddressID") }, 
 		inverseJoinColumns = { @JoinColumn(name = "AddressTypeID")})

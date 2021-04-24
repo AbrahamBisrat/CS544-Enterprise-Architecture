@@ -37,10 +37,11 @@ public class Application {
 
             // retieve all cars
             Query query = session.getNamedQuery("CountryRegion.All");
-            query.setMaxResults(50);
+            //query.setMaxResults(50);
 			List<CountryRegion> countries = query.list();
             for (CountryRegion country : countries) {
-                System.out.println(country);
+            	country.getStates().size();
+                //System.out.println(country);
             }
             tx.commit();
 
