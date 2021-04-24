@@ -7,15 +7,25 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
-public class AppQueryAll {
+public class Application1 {
 
     private static final SessionFactory sessionFactory;
     
     static {
-		sessionFactory = HibernateUtils.getSessionFactory(Arrays.asList(Country.class,City.class,Address.class));
+		sessionFactory = HibernateUtils2.getSessionFactory(Arrays.asList(
+				CountryRegion.class,
+				StateProvince.class,
+				BusinessAddress.class,
+				BusinessAddressType.class,
+				BusinessEntity.class,
+				ContactType.class,
+				Person.class
+			));
 	}
 
+    @SuppressWarnings("unchecked")
 	public static void main(String[] args) {
         // Hibernate placeholders
         Session session = null;
@@ -25,12 +35,15 @@ public class AppQueryAll {
             session = sessionFactory.openSession();
             tx = session.beginTransaction();
 
-            // 1. retrieve the list of first 50 countries using a Hibernate query
-            List<Object> list1 = session.createQuery("from java.lang.Object", Object.class).list();
-            System.out.println("\nList of first 50 countries:\n");
-            for (Object o : list1) {
-                System.out.println(o);
-            }
+            // Query
+            Query<BusinessEntity> query = session.createQuery("Select be from BusinessEntity be where be.id = 292");
+			BusinessEntity businessEntity = query.uniqueResult();
+            System.out.println(businessEntity);
+            
+            // Query
+            Query<BusinessEntity> query2 = session.createQuery("Select be from BusinessEntity be where be.id > 292 AND be.id < 400");
+			List<BusinessEntity> entityList = query2.list();
+			entityList.forEach(System.out::println);
             
             tx.commit();
 

@@ -7,16 +7,17 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
-public class AppQueryAll {
+public class Application3 {
 
     private static final SessionFactory sessionFactory;
     
     static {
-		sessionFactory = HibernateUtils.getSessionFactory(Arrays.asList(Country.class,City.class,Address.class));
+		sessionFactory = HibernateUtils.getSessionFactory(Arrays.asList(Country.class,City.class,Address.class,Customer.class));
 	}
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
         // Hibernate placeholders
         Session session = null;
         Transaction tx = null;
@@ -25,13 +26,14 @@ public class AppQueryAll {
             session = sessionFactory.openSession();
             tx = session.beginTransaction();
 
-            // 1. retrieve the list of first 50 countries using a Hibernate query
-            List<Object> list1 = session.createQuery("from java.lang.Object", Object.class).list();
-            System.out.println("\nList of first 50 countries:\n");
-            for (Object o : list1) {
-                System.out.println(o);
+            // Query
+            Query<City> query = session.createQuery("from City c where c.country.name = :countryName", City.class);
+            query.setParameter("countryName", "United States");
+			List<City> cities = query.list();
+            for (City city : cities) {
+                System.out.println(city);
             }
-            
+
             tx.commit();
 
         } catch (HibernateException e) {

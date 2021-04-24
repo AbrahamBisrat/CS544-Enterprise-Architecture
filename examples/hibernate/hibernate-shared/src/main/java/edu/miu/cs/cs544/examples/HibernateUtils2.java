@@ -26,6 +26,7 @@ public class HibernateUtils2 {
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.SQLServer2008Dialect");
 
                 settings.put(Environment.SHOW_SQL, "true");
+                settings.put(Environment.FORMAT_SQL, "true");
 
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 

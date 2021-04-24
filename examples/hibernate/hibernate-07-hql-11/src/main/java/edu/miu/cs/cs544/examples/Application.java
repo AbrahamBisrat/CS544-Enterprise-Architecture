@@ -14,7 +14,7 @@ public class Application {
     private static final SessionFactory sessionFactory;
     
     static {
-		sessionFactory = HibernateUtils.getSessionFactory(Arrays.asList(Country.class,City.class,Address.class));
+		sessionFactory = HibernateUtils2.getSessionFactory(Arrays.asList(CountryRegion.class));
 	}
 
     @SuppressWarnings("unchecked")
@@ -28,43 +28,43 @@ public class Application {
             tx = session.beginTransaction();
 
             // 1. retrieve the list of first 50 countries using a Hibernate query
-            Query<Country> query1 = session.createQuery("from Country c where c.id < 50", Country.class);
-            List<Country> list1 = query1.list();
-            System.out.println("\nList of first 50 countries:\n");
-            for (Country country : list1) {
+            Query<CountryRegion> query1 = session.createQuery("from CountryRegion c where c.id like 'A%'", CountryRegion.class);
+            List<CountryRegion> list1 = query1.list();
+            System.out.println("\nList of all the countries whose two letter code starts with an A:\n");
+            for (CountryRegion country : list1) {
                 System.out.println(country);
             }
             
             // 2. retrieve the list of ALL countries using a Hibernate named query
-            Query<Country> query2 = session.getNamedQuery("Country.All"); 
-            List<Country> list2 = query2.list();
+            Query<CountryRegion> query2 = session.getNamedQuery("Country.All"); 
+            List<CountryRegion> list2 = query2.list();
             System.out.println("\nList of ALL countries:\n");
-            for (Country country : list2) {
+            for (CountryRegion country : list2) {
                 System.out.println(country);
             }
 
             // 3. query result size
-            Query<Country> query3 = session.getNamedQuery("Country.All");            
+            Query<CountryRegion> query3 = session.getNamedQuery("Country.All");            
             query3.setFirstResult(0);
             query3.setMaxResults(50);
-            List<Country> list3 = query3.list();
+            List<CountryRegion> list3 = query3.list();
             System.out.println("\nList of first 50 countries:\n");
-            for (Country country : list3) {
+            for (CountryRegion country : list3) {
                 System.out.println(country);
             }
             
             query3.setFirstResult(50);
             query3.setMaxResults(100);
-            List<Country> list4 = query3.list();
+            List<CountryRegion> list4 = query3.list();
             System.out.println("\nList of second 50 countries:\n");
-            for (Country country : list4) {
+            for (CountryRegion country : list4) {
                 System.out.println(country);
             }
 
             // 4. query result size
-            Query<Country> query4 = session.createQuery("from Country c where c.id = :id", Country.class);
-            query4.setParameter("id", 50L);
-            Country country = (Country) query4.uniqueResult();
+            Query<CountryRegion> query4 = session.createQuery("from CountryRegion c where c.id = :id", CountryRegion.class);
+            query4.setParameter("id", "US");
+            CountryRegion country = (CountryRegion) query4.uniqueResult();
             System.out.print("\nCountry at index ") ; 
             System.out.println(country);
 
