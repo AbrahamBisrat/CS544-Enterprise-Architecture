@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +18,7 @@ import lombok.ToString;
 
 @Entity
 @Table(name = "Country")
-@NoArgsConstructor @Getter @Setter 
+@NoArgsConstructor @AllArgsConstructor @Getter @Setter 
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Country {

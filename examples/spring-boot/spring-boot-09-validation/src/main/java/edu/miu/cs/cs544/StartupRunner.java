@@ -19,11 +19,11 @@ public class StartupRunner implements CommandLineRunner {
     @Override
     @Transactional
     public void run(String...args) throws Exception {
-//    	Country c1 = new Country("US", "United States", LocalDate.now());
-//    	Country c2 = new Country("CA", "Canada", LocalDate.now());
-//    	Country c3 = new Country("MX", "Mexico", LocalDate.now());
-//    	countryRepository.save(c1);
-//    	countryRepository.save(c2);
-//    	countryRepository.save(c3);
+    	Country c1 = new Country("US", "United States", LocalDate.now());
+    	Country c2 = new Country("CA", "Canada", LocalDate.now());
+    	Country c3 = new Country("MX", "Mexico", LocalDate.now());
+    	countryRepository.save(c1);
+    	countryRepository.save(c2);
+    	countryRepository.save(c3);
     }
 }
