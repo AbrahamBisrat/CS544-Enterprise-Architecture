@@ -29,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private DataSource dataSource;
      
     @Autowired
-    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
     	PasswordEncoder encoder = new BCryptPasswordEncoder();
         
         auth.inMemoryAuthentication()
