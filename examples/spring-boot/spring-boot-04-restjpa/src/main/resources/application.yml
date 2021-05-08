@@ -7,7 +7,7 @@ spring:
     password: AdventureWorks
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
     hikari:
-      maximumPoolSize: 10
+      maximumPoolSize: 20
   jpa:
     show-sql: true
     hibernate:
