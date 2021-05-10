@@ -1,0 +1,6 @@
+server:
+  port: 8011
+spring:
+  application:
+    name: spring-boot-10-client
+base-service-url: http://localhost:8010

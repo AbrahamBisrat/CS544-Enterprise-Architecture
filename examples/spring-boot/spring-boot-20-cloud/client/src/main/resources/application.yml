@@ -1,0 +1,7 @@
+server:
+  port: 8021
+spring:
+  application:
+    name: spring-boot-20-client
+    
+spring-boot-server.name: spring-boot-20-server

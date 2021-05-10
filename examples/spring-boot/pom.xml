@@ -29,6 +29,9 @@
 		<module>spring-boot-07-security-in-memory</module>
 		<module>spring-boot-08-security-db-tables</module>
 		<module>spring-boot-09-validation</module>
+		<module>spring-boot-10-cloud</module>
+		<module>spring-boot-20-cloud</module>
+		<module>spring-boot-30-cloud</module>
 	</modules>
 
 	<properties>
