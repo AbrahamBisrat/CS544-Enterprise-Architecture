@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,7 +42,20 @@ public class CountryController {
 	
 	@PostMapping
 	public Country createCountry(@Valid @RequestBody Country country) {
+		countryRepository.findById(country.getCountryRegionCode())
+			.ifPresent(c -> {
+				throw new RuntimeException();
+			});
 		return countryRepository.save(country);
 	}
 
+	@PutMapping("/{id}")
+	public Country updateCountry(@PathVariable(name = "id") String countryId, 
+			@Valid @RequestBody Country country) {
+		countryRepository.findById(countryId).orElseThrow(RuntimeException::new);
+		
+		country.setCountryRegionCode(countryId);
+
+		return countryRepository.save(country);
+	}
 }
