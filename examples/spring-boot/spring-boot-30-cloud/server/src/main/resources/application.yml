@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: spring-boot-30-server
+  datasource:
+    url: jdbc:sqlserver://cs544.cs.miu.edu:1433;databaseName=AdventureWorks2019
+    username: adventure
+    password: AdventureWorks
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    hikari:
+      maximumPoolSize: 10
+  jpa:
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServer2008Dialect
+logging:
+  file:
+    name: /Coding/Logging/${spring.application.name}/log
+server:
+  port: 8030
