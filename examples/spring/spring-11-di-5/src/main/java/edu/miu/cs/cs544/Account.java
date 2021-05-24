@@ -3,12 +3,12 @@ package edu.miu.cs.cs544;
 public class Account {
 	double balance;
 	long accountNumber;
-	
+
 	public Account(long accountNumber) {
 		this.balance = 0;
 		this.accountNumber = accountNumber;
 	}
-	
+
 	public void deposit(double amount) {
 		balance += amount;
 	}

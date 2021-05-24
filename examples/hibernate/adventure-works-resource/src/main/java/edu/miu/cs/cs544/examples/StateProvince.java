@@ -13,11 +13,14 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "Person.StateProvince")
 @NoArgsConstructor @Getter @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+//@ToString(exclude = {"countryRegion"})
+@ToString
 public class StateProvince {
 	
 	@Id
@@ -27,9 +30,9 @@ public class StateProvince {
 	
 	private String stateProvinceCode;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "countryRegionCode")
-	private CountryRegion countryRegion;
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "countryRegionCode")
+//	private CountryRegion countryRegion;
 	
 	private String name;
 	
