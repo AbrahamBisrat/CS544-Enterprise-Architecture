@@ -1,7 +1,11 @@
 package edu.miu.cs.cs544;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class AccountDAOImpl implements AccountDAO {
-	DataAccess dataAccess = new DataAccess();
+
+	@Autowired
+	DataAccess dataAccess;
 
 	public Account loadAccount(long accountNumber) {
 		System.out.println("Real implementation of loadAccount is called");

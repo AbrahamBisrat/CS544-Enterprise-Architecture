@@ -10,8 +10,8 @@ public class Application {
 		context = new AnnotationConfigApplicationContext(AppConfig.class);
 
 		AccountService accountService = context.getBean("accountService", AccountService.class);
-		
+
 		accountService.deposit(1234L, 2000);
-		
+
 	}
 }

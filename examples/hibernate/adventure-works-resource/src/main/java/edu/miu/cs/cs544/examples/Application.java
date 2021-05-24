@@ -40,7 +40,7 @@ public class Application {
             //query.setMaxResults(50);
 			List<CountryRegion> countries = query.list();
             for (CountryRegion country : countries) {
-            	country.getStates().size();
+            	country.getStates();
                 //System.out.println(country);
             }
             tx.commit();

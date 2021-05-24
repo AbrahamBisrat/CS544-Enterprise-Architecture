@@ -37,9 +37,9 @@ public class Application2 {
 
             // retieve all cars
             Query query = session.createQuery("from CountryRegion where id = 'US'");
-			List<CountryRegion> countries = query.list();
-            for (CountryRegion country : countries) {
-                System.out.println(country);
+			CountryRegion country = (CountryRegion) query.uniqueResult();
+            for (StateProvince state : country.getStates()) {
+                System.out.println(state);
             }
             tx.commit();
 

@@ -5,13 +5,11 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -35,8 +33,9 @@ public class CountryRegion {
 	
 	private String name;
 	
-	@OneToMany(mappedBy = "countryRegion")
-	@LazyCollection(LazyCollectionOption.EXTRA)
+	@OneToMany//(mappedBy = "countryRegion")
+	//@LazyCollection(LazyCollectionOption.EXTRA)
+	@JoinColumn(name = "countryRegionCode")
 	private List<StateProvince> states;
 	
 }
