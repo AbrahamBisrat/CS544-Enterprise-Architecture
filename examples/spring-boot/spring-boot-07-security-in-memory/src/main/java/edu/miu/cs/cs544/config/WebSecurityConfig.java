@@ -31,9 +31,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/favicon.ico").permitAll()
 			.anyRequest().hasRole("Service")
 			.and()
-		.csrf()
-			.disable()
-		.httpBasic();
+			.formLogin();
+//			.and()
+//		.csrf()
+//			.disable()
+//		.httpBasic();
     }
     
 }
