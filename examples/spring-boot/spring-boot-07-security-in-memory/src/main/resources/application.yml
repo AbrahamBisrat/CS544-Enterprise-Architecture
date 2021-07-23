@@ -1,10 +1,6 @@
 spring:
   application:
     name: spring-boot-06-security-config
-  security:
-    user:
-      name: username
-      password: 123456
   datasource:
     url: jdbc:sqlserver://cs544.cs.miu.edu:1433;databaseName=AdventureWorks2019
     username: adventure

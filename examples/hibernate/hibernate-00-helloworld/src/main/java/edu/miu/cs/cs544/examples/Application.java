@@ -37,6 +37,7 @@ public class Application {
 			if (session != null)
 				session.close();
 		}
+		
 		try {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
