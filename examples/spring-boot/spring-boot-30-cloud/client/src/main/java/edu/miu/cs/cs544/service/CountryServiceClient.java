@@ -41,11 +41,11 @@ public class CountryServiceClient {
 	}
 	
 	@HystrixCommand(fallbackMethod = "findAllFallback")
-	public List<Country> findAll() {
+	public List<Country> findAll() throws InterruptedException {
 		Country[] countries = restTemplate
 			.getForObject(getBaseServiceUrl() + "/countries", 
 					Country[].class);
-		
+		Thread.sleep(20000);		
 		return Arrays.asList(countries);
 	}
 	

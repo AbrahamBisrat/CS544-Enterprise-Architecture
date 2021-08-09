@@ -16,7 +16,7 @@ import edu.miu.cs.cs544.service.CountryServiceClient;
 @SpringBootApplication
 public class Application {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		ApplicationContext context = 
 				SpringApplication.run(Application.class, args);
 		
