@@ -9,7 +9,9 @@ public class Application {
 	public static void main(String[] args) {
 		context = new ClassPathXmlApplicationContext("springconfig.xml");
 		SampleClass sc = context.getBean("sampleClass", SampleClass.class);
-		sc.longRunningMethod();
+		for(int i = 0; i < 10; ++i) {
+			sc.longRunningMethod();
+		}
 		System.out.println("Main method continues on!");
 	}
 }

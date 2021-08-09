@@ -43,8 +43,8 @@
 		destroy-method="close">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
 		<property name="url" value="jdbc:sqlserver://cs544.cs.miu.edu:1433" />
-		<property name="username" value="username" />
-		<property name="password" value="password" />
+		<property name="username" value="612345" />
+		<property name="password" value="612345" />
 	</bean>
 	<bean id="hibernateProperties"
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
@@ -53,7 +53,7 @@
 				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServer2008Dialect</prop>
 				<prop key="connection.pool.size">1</prop>
 				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
 			</props>
 		</property>
 	</bean>
@@ -61,7 +61,7 @@
     <!--    
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/cs544" />
 		<property name="username" value="cs544" />
 		<property name="password" value="201511" />
@@ -70,7 +70,7 @@
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="properties">
 			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop>
 				<prop key="connection.pool.size">1</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.hbm2ddl.auto">create</prop>
