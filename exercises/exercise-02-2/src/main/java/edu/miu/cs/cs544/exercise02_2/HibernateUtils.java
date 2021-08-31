@@ -1,4 +1,4 @@
-package edu.miu.cs.cs544.examples;
+package edu.miu.cs.cs544.exercise02_2;
 
 import java.util.List;
 import java.util.Properties;
