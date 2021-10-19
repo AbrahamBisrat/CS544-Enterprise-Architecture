@@ -7,7 +7,7 @@ import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
 @Aspect
-@Component
+//@Component
 public class TraceAdvice {
 	@Before("execution(* edu.miu.cs.cs544.AccountService.*(..))")
 	public void tracebeforemethod(JoinPoint joinpoint) {

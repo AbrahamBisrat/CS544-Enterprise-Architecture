@@ -45,7 +45,7 @@ public class CountryServiceClient {
 		Country[] countries = restTemplate
 			.getForObject(getBaseServiceUrl() + "/countries", 
 					Country[].class);
-		Thread.sleep(20000);		
+		//Thread.sleep(20000);		
 		return Arrays.asList(countries);
 	}
 	

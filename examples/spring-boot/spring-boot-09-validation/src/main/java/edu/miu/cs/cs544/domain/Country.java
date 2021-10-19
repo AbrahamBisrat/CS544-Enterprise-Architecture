@@ -6,8 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.Length;
+import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -24,7 +23,7 @@ import lombok.ToString;
 public class Country {
 	
 	@Id
-	@Length(min = 2, max = 2)
+	@Size(max = 2, min = 2)
 	private String countryRegionCode;
 	
 	@NotNull

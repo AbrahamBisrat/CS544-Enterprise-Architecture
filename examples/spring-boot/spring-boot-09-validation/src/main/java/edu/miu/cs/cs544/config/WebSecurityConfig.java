@@ -54,6 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/people/**").hasRole("Service")
 			.anyRequest().authenticated()
 			.and()
+		.csrf().disable()
 		.httpBasic();
     }
     
