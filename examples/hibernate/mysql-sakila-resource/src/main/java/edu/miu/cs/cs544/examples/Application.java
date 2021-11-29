@@ -1,7 +1,6 @@
 package edu.miu.cs.cs544.examples;
 
 import java.util.Arrays;
-import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -15,13 +14,8 @@ public class Application {
     
     static {
 		sessionFactory = HibernateUtils2.getSessionFactory(Arrays.asList(
-				CountryRegion.class,
-				StateProvince.class,
-				BusinessAddress.class,
-				BusinessAddressType.class,
-				BusinessEntity.class,
-				ContactType.class,
-				Person.class
+				City.class,
+				Country.class
 			));
 	}
 
@@ -35,14 +29,11 @@ public class Application {
             session = sessionFactory.openSession();
             tx = session.beginTransaction();
 
-            // retieve all cars
-            Query query = session.getNamedQuery("CountryRegion.All");
-            //query.setMaxResults(50);
-			List<CountryRegion> countries = query.list();
-            for (CountryRegion country : countries) {
-            	country.getStates();
-                //System.out.println(country);
-            }
+            // Retrieve all countries
+            Query query = session.createQuery("from Country");
+            //query.setMaxResults(10);
+			query.list().forEach(System.out::println);
+			
             tx.commit();
 
         } catch (HibernateException e) {
@@ -55,7 +46,7 @@ public class Application {
                 session.close();
             }
         }
-
+        
         // Close the SessionFactory (not mandatory)
         sessionFactory.close();
         System.exit(0);
