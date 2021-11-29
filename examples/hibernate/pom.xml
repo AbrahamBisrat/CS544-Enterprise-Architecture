@@ -41,6 +41,9 @@
 		<module>hibernate-07-hql-33</module>
 		<module>hibernate-07-hql-44</module>
 		<module>hibernate-07-hql-55</module>
+		<module>hibernate-08-concurrenrcy-0</module>
+		<module>hibernate-08-concurrenrcy-1</module>
+		<module>hibernate-08-concurrenrcy-2</module>
 		<module>adventure-works-resource</module>
 		<module>mysql-sakila-resource</module>
 	</modules>
