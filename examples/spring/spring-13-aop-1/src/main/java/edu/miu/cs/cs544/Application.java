@@ -9,7 +9,7 @@ public class Application {
 	public static void main(String[] args) {
 		context = new ClassPathXmlApplicationContext("springconfig.xml");
 
-		AccountService accountService = context.getBean("accountService", AccountService.class);
+		AccountService accountService = context.getBean(AccountService.class);
 		
 		accountService.deposit(1234L, 2000);
 		

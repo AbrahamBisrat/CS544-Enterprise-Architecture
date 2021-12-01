@@ -5,8 +5,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class AccountDAOImpl implements AccountDAO {
+	
 	@Autowired
-	DataAccess dataAccess;
+	private DataAccess dataAccess;
 
 	public Account loadAccount(long accountNumber) {
 		return dataAccess.loadAccount(accountNumber);
