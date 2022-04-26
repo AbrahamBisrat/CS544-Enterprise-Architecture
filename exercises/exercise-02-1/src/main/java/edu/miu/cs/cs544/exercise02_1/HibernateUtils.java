@@ -13,17 +13,17 @@ public class HibernateUtils {
     private static SessionFactory sessionFactory;
     
     private static Configuration configuration = new Configuration();
-    
-    @SuppressWarnings({ "rawtypes" })
+
+    // Singleton
     public static SessionFactory getSessionFactory(List<Class> entityClasses) {
         if (sessionFactory == null) {
             try {
                 Properties settings = new Properties();
-                settings.put(Environment.DRIVER, "com.microsoft.sqlserver.jdbc.SQLServerDriver");
-                settings.put(Environment.URL, "jdbc:sqlserver://cs544.cs.miu.edu:1433"); //10.10.10.15
-                settings.put(Environment.USER, "612345");
-                settings.put(Environment.PASS, "612345");
-                settings.put(Environment.DIALECT, "org.hibernate.dialect.SQLServer2008Dialect");
+                settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
+                settings.put(Environment.URL, "jdbc:mysql://172.17.18.6:3306/cs544?useSSL=false");
+                settings.put(Environment.USER, "reconov");
+                settings.put(Environment.PASS, "reconov");
+                settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5InnoDBDialect");
 
                 settings.put(Environment.SHOW_SQL, "true");
 
