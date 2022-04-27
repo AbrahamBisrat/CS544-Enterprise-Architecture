@@ -4,17 +4,17 @@ import edu.miu.cs.cs544.exercise02_1.HibernateUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.function.Consumer;
 
 public class AppBook {
 
     public static void main(String[] args){
-        //TODO
+        // TODO
         partOne();
         partTwo();
         partThree();
@@ -34,15 +34,31 @@ public class AppBook {
     }
 
     private static void partTwo() {
-
+        apply(session -> {
+            Query<Book> bookQuery = session.createQuery("from Book", Book.class);
+            bookQuery.getResultList().forEach(System.out::println);
+        });
     }
 
     private static void partThree() {
+        apply(session -> {
+            Query<Book> bookQuery = session.createQuery("from Book", Book.class);
+            List<Book> bookList = bookQuery.getResultList();
 
+            Book book1 = bookList.get(0);
+            session.persist(book1);
+
+            Book book2 = bookList.get(1);
+            book2.setAuthor(book2.getAuthor() + " updated");
+            session.persist(book2);
+
+            Book book3 = bookList.get(2);
+            session.delete(book3);
+        });
     }
 
     private static void partFour() {
-
+        partTwo();
     }
 
 
@@ -58,6 +74,7 @@ public class AppBook {
 
             session.close();
         } catch (HibernateException e) {
+//            txn.rollback
             e.printStackTrace();
         }
     }
