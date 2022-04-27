@@ -29,13 +29,13 @@ public class AppBook {
             tx = session.beginTransaction();
 
             // create and persist the Books
-            Book b1 = new Book("the book 1", "123jjkj", "me", 234, new Date());
+            Book b1 = new Book("book 1", "1", "author 1", 234, new Date());
             session.persist(b1);
 
-            Book b2 = new Book("the book 2", "125jjkj", "me", 234, new Date());
+            Book b2 = new Book("book 2", "2", "author 2", 234, new Date());
             session.persist(b2);
 
-            Book b3 = new Book("the book 3", "123s8jj", "me", 234, new Date());
+            Book b3 = new Book("book 3", "3", "author 3", 234, new Date());
             session.persist(b3);
 
             tx.commit();
@@ -58,7 +58,7 @@ public class AppBook {
             for(Book eachBook : bookList)
                 System.out.println("eachBook = " + eachBook);
 
-            tx.commit();// carefull here about introducing side effects
+            tx.commit();// careful here about introducing side effects
         } catch (HibernateException e) {
             tx.rollback();
             e.printStackTrace();
@@ -79,14 +79,16 @@ public class AppBook {
             b1.setAuthor("you");
             session.persist(b1);
 
-            Book b2 = bookList.get(0);
+            Book b2 = bookList.get(1);
             b2.setTitle("some title");
             session.persist(b2);
 
-            Book b3 = bookList.get(0);
-            session.delete(b2);
+            Book b3 = bookList.get(2);
+            System.out.println("\n\n\nDeleting things here");
+            System.out.println(b3 + "\n\n\n");
+            session.delete(b3);
 
-            tx.commit();// carefull here about introducing side effects
+            tx.commit();// careful here about introducing side effects
         } catch (HibernateException e) {
             tx.rollback();
             e.printStackTrace();
