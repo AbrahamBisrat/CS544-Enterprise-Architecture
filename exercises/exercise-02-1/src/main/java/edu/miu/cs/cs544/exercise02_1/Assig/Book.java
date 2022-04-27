@@ -1,9 +1,6 @@
 package edu.miu.cs.cs544.exercise02_1.Assig;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -12,9 +9,10 @@ import java.util.Objects;
 
 @Data
 @Entity
+@ToString
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Book {
 
     @Id
