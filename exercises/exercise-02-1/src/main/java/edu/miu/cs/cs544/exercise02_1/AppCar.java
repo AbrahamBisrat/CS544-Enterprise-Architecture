@@ -30,11 +30,12 @@ public class AppCar {
             Car car1 = new Car("BMW", "SDA231", 30221.00);
             // save the car
             session.persist(car1);
-            // Create new instance of Car and set values in it
+//             Create new instance of Car and set values in it
             Car car2 = new Car("Mercedes", "HOO100", 4088.00);
             // save the car
             session.persist(car2);
 
+            session.flush();
             tx.commit();
 
         } catch (HibernateException e) {
