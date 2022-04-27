@@ -1,11 +1,19 @@
 package edu.miu.cs.cs544.exercise02_1;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import edu.miu.cs.cs544.exercise02_1.Assig.Owner;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Car {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,45 +22,15 @@ public class Car {
 	private String year;
 	private double price;
 
-	public Car() {
-	}
+	@ManyToOne( cascade = CascadeType.PERSIST )
+	private Owner owner;
 
-	public Car(String brand, String year, double price) {
-		this.brand = brand;
-		this.year = year;
-		this.price = price;
+	public static Car create(String brand, String year, double price) {
+		return new Car()
+			.builder()
+				.brand(brand)
+				.year(year)
+				.price(price)
+			.build();
 	}
-
-	public void setBrand(String brand) {
-		this.brand = brand;
-	}
-
-	public String getBrand() {
-		return brand;
-	}
-
-	public void setYear(String year) {
-		this.year = year;
-	}
-
-	public String getYear() {
-		return year;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public long getId() {
-		return id;
-	}
-
 }
