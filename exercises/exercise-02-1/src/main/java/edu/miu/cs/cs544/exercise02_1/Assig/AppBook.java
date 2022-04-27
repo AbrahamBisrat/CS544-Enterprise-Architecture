@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -29,13 +30,13 @@ public class AppBook {
             tx = session.beginTransaction();
 
             // create and persist the Books
-            Book b1 = new Book("book 1", "1", "author 1", 234, new Date());
+            Book b1 = new Book("book 1", "1", "author 1", 234, LocalDate.now());
             session.persist(b1);
 
-            Book b2 = new Book("book 2", "2", "author 2", 234, new Date());
+            Book b2 = new Book("book 2", "2", "author 2", 234, LocalDate.now());
             session.persist(b2);
 
-            Book b3 = new Book("book 3", "3", "author 3", 234, new Date());
+            Book b3 = new Book("book 3", "3", "author 3", 234, LocalDate.now());
             session.persist(b3);
 
             tx.commit();

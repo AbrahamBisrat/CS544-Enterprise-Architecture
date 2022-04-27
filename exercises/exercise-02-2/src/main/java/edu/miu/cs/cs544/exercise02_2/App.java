@@ -52,7 +52,6 @@ public class App {
             session = sessionFactory.openSession();
             tx = session.beginTransaction();
 
-            @SuppressWarnings("unchecked")
             List<Laptop> laptops = session.createQuery("from Laptop").list();
             for (Laptop laptop : laptops) {
                 System.out.println(laptop.getBrand() + " " + laptop.getModel()
