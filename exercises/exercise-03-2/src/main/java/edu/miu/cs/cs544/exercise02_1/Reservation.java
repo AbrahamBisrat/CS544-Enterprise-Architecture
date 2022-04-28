@@ -3,11 +3,9 @@ package edu.miu.cs.cs544.exercise02_1;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Collection;
 
 @Data
 @Entity
@@ -17,5 +15,9 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private LocalDate date;
+
+    @ManyToOne
+    @JoinTable(name = "reservation_book")
+    private Book book;
 
 }
