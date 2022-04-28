@@ -14,4 +14,8 @@ public class Office {
     private int roomNumber;
     private String building;
 
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
+
 }

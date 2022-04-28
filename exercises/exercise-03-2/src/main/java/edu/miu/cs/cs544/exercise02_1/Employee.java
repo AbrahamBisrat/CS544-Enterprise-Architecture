@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Data
 @Entity
@@ -22,6 +24,10 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "dept_id")
     private Department department;
+
+    @OneToMany
+    @JoinColumn(name = "office_id")
+    private Collection<Office> offices = new ArrayList<>();
 
 }
 
