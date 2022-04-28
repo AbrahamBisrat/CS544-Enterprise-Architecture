@@ -1,18 +1,20 @@
 package edu.miu.cs.cs544.exercise02_1;
 
+
 import lombok.Data;
 
 import javax.persistence.*;
 
 @Data
 @Entity
-public class Office {
+public class Laptop {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "roomnumber")
-    private int roomNumber;
-    private String building;
+    private int id;
+    @Column(name = "ISBN")
+    private String brand;
+    private String type;
 
     @ManyToOne
     @JoinColumn(name = "employee_id")

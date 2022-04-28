@@ -21,13 +21,6 @@ public class Employee {
     private int id;
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "dept_id")
-    private Department department;
-
-    @OneToMany
-    @JoinColumn(name = "office_id")
-    private Collection<Office> offices = new ArrayList<>();
 
 }
 
