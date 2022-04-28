@@ -3,10 +3,9 @@ package edu.miu.cs.cs544.exercise02_1;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Data
 @Entity
@@ -17,5 +16,8 @@ public class Course {
     private int id;
     private int courseNumber;
     private String name;
+
+    @ManyToMany(mappedBy = "courses")
+    private Collection<Student> students = new ArrayList<>();
 
 }
