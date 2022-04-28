@@ -23,4 +23,10 @@ public class School {
     @MapKey(name = "id")
     private Map<Integer, Student> students;
 
+    public static School create(String name) {
+        School s = new School();
+        s.setName(name);
+        return s;
+    }
+
 }

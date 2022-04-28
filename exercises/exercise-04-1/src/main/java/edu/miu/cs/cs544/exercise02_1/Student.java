@@ -1,7 +1,10 @@
 package edu.miu.cs.cs544.exercise02_1;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,6 +12,9 @@ import java.util.Collection;
 
 @Data
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Student {
 
     @Id
@@ -19,5 +25,13 @@ public class Student {
     private String firstName;
     @Column(name = "lastname")
     private String lastName;
+
+    public static Student create(String fName, String lName) {
+        return new Student()
+                .builder()
+                .firstName(fName)
+                .lastName(lName)
+                .build();
+    }
 
 }

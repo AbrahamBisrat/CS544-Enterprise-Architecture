@@ -1,12 +1,14 @@
 package edu.miu.cs.cs544.exercise02_1;
 
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
 
 @Data
 @Entity
+@Builder
 public class Laptop {
 
     @Id
@@ -19,5 +21,13 @@ public class Laptop {
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
+
+    public static Laptop create(String brand, String type) {
+        return new Laptop()
+                .builder()
+                .brand(brand)
+                .type(type)
+                .build();
+    }
 
 }

@@ -2,6 +2,7 @@ package edu.miu.cs.cs544.exercise02_1;
 
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import java.util.Set;
 
 @Data
 @Entity
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name ="employee2")
@@ -28,5 +30,13 @@ public class Employee {
     @OneToMany
     @JoinColumn(name = "laptop_id")
     private Set<Laptop> laptops;
+
+    public static Employee create(String fName, String lName) {
+        return new Employee()
+                .builder()
+                .firstName(fName)
+                .lastName(lName)
+                .build();
+    }
 
 }
