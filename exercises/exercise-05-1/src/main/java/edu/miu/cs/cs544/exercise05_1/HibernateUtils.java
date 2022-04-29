@@ -1,4 +1,4 @@
-package edu.miu.cs.cs544.exercise02_1;
+package edu.miu.cs.cs544.exercise05_1;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,7 +20,7 @@ public class HibernateUtils {
             try {
                 Properties settings = new Properties();
                 settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
-                settings.put(Environment.URL, "jdbc:mysql://172.17.18.6:3306/cs544?useSSL=false"); // Home server
+                settings.put(Environment.URL, "jdbc:mysql://172.17.18.6:3306/cs544Ex5?useSSL=false"); // Home server
                 settings.put(Environment.USER, "reconov");
                 settings.put(Environment.PASS, "reconov");
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5InnoDBDialect");
@@ -28,6 +28,7 @@ public class HibernateUtils {
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
                 settings.put(Environment.HBM2DDL_AUTO, "create");
+//                settings.put(Environment.HBM2DDL_AUTO, "update");
 
                 configuration.setProperties(settings);
                 
