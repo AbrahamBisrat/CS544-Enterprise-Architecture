@@ -7,21 +7,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Data
 @Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Book extends Product{
+public class DVD extends Product{
 
-    private String title;
+    private String genre;
 
-    public static Book create(String title) {
-        return new Book()
+    public static DVD create(String genre) {
+        return new DVD()
                 .builder()
-                .title(title)
+                .genre(genre)
                 .build();
     }
 

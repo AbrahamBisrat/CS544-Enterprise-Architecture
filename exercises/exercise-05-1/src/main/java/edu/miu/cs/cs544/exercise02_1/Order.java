@@ -13,25 +13,17 @@ import java.time.LocalDate;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Flight {
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "orderid")
     private int id;
-    @Column(name = "flightnumber")
-    private String flightNumber;
-    @Column(name = "departure")
-    private String from;
-    @Column(name = "destination")
-    private String to;
     private LocalDate date;
 
-    public static Flight create(String fNum, String from, String to, LocalDate date) {
-        return new Flight()
+    public static Order create(LocalDate date) {
+        return new Order()
                 .builder()
-                .flightNumber(fNum)
-                .from(from)
-                .to(to)
                 .date(date)
                 .build();
     }
