@@ -29,6 +29,68 @@ public class App {
         // fillDataBase();
 
         // a) Flights leaving USA capacity > 500
+        partOne();
+
+        // b) All airlines that use A380 airplanes
+        partTwo();
+
+        // c) Flights using 747 planes that don't belong to Star Alliance
+        partThree();
+
+        // d) All flights leaving before 12pm on 08/07/2009
+        partFour();
+
+        System.exit(0);
+    }
+
+    private static void partFour() {
+        apply(session -> {
+            System.out.println("\n\nPart Four\n\n");
+            List<Flight> flights = session.createQuery("select f from Flight f where f.departureDate<='2009.08.07' and f.departureTime<='12:00:00'").list();
+            System.out.println("Flight:  Departs:     "
+                    + "                  Arrives:");
+            for (Flight flight : flights) {
+                System.out.printf("%-7s  %-12s %7s %8s  %-12s %7s %8s\n",
+                        flight.getFlightnr(), flight.getOrigin().getCity(),
+                        flight.getDepartureDate(), flight.getDepartureTime(),
+                        flight.getDestination().getCity(), flight
+                        .getArrivalDate(), flight.getArrivalTime());
+            }
+        });
+    }
+
+    private static void partThree() {
+        apply(session -> {
+            System.out.println("\n\nPart Three\n\n");
+            List<Flight> flights = session.createQuery("select distinct f from Flight f " +
+                    "where f.airplane.model='747' AND f.airline.name <> 'Star Alliance'").list();
+            System.out.println("Flight:  Departs:     "
+                    + "                  Arrives:");
+            for (Flight flight : flights) {
+                System.out.printf("%-7s  %-12s %7s %8s  %-12s %7s %8s\n",
+                        flight.getFlightnr(), flight.getOrigin().getCity(),
+                        flight.getDepartureDate(), flight.getDepartureTime(),
+                        flight.getDestination().getCity(), flight
+                        .getArrivalDate(), flight.getArrivalTime());
+            }
+        });
+    }
+
+    private static void partTwo() {
+        apply(session -> {
+            System.out.println("\n\nPart Two\n\n");
+            List<Airline> airlines = session
+                    .createQuery("select a from Airline a join Flight f on a.id=f.airline.id where f.airplane.model='A380'").list();
+            // select a, f from Airline a join Flight f on a.id=f.airline.id where f.airplane.model='A380'
+
+            System.out.println("Airlines:");
+            for (Airline airline : airlines) {
+                System.out.printf("%-15s\n", airline.getName());
+            }
+        });
+    }
+
+    private static void partOne() {
         apply(session -> {
             System.out.println("\n\nPart One\n\n");
 
@@ -48,52 +110,6 @@ public class App {
                         .getArrivalDate(), flight.getArrivalTime());
             }
         });
-
-        // b) All airlines that use A380 airplanes
-        apply(session -> {
-            System.out.println("\n\nPart Two\n\n");
-            List<Airline> airlines = session
-                    .createQuery("select a from Airline a join Flight f on a.id=f.airline.id where f.airplane.model='A380'").list();
-            // select a, f from Airline a join Flight f on a.id=f.airline.id where f.airplane.model='A380'
-
-            System.out.println("Airlines:");
-            for (Airline airline : airlines) {
-                System.out.printf("%-15s\n", airline.getName());
-            }
-        });
-
-        // c) Flights using 747 planes that don't belong to Star Alliance
-        apply(session -> {
-            System.out.println("\n\nPart Three\n\n");
-            List<Flight> flights = session.createQuery("select distinct f from Flight f " +
-                    "where f.airplane.model='747' AND f.airline.name <> 'Star Alliance'").list();
-            System.out.println("Flight:  Departs:     "
-                    + "                  Arrives:");
-            for (Flight flight : flights) {
-                System.out.printf("%-7s  %-12s %7s %8s  %-12s %7s %8s\n",
-                        flight.getFlightnr(), flight.getOrigin().getCity(),
-                        flight.getDepartureDate(), flight.getDepartureTime(),
-                        flight.getDestination().getCity(), flight
-                        .getArrivalDate(), flight.getArrivalTime());
-            }
-        });
-
-        // d) All flights leaving before 12pm on 08/07/2009
-        apply(session -> {
-            System.out.println("\n\nPart Four\n\n");
-            List<Flight> flights = session.createQuery("select f from Flight f where f.departureDate<='2009.08.07' and f.departureTime<='12:00:00'").list();
-            System.out.println("Flight:  Departs:     "
-                    + "                  Arrives:");
-            for (Flight flight : flights) {
-                System.out.printf("%-7s  %-12s %7s %8s  %-12s %7s %8s\n",
-                        flight.getFlightnr(), flight.getOrigin().getCity(),
-                        flight.getDepartureDate(), flight.getDepartureTime(),
-                        flight.getDestination().getCity(), flight
-                        .getArrivalDate(), flight.getArrivalTime());
-            }
-        });
-
-        System.exit(0);
     }
 
     public static void fillDataBase() {
