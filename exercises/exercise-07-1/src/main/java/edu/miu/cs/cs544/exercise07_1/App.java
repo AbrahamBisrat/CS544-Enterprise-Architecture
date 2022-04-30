@@ -2,6 +2,7 @@ package edu.miu.cs.cs544.exercise07_1;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -16,33 +17,21 @@ import org.hibernate.query.Query;
 
 public class App {
 
-	private static final SessionFactory sessionFactory;
-	
-	static {
-		// If there is more than one entity, you will have to pass them as a comma delimited argument list to the method below
-		sessionFactory = HibernateUtils.getSessionFactory(Arrays.asList(
-				Airline.class,
-				Airplane.class,
-				Airport.class,
-				Flight.class
-				));
-	}
+	private static List<Class> classList = Arrays.asList(
+            Airline.class,
+            Airplane.class,
+            Airport.class,
+            Flight.class
+    );
 
     public static void main(String[] args) {
-        // Hibernate placeholders
-        Session session = null;
-        Transaction tx = null;
-
         // fill the database
         // fillDataBase();
-        // a) Flights leaving USA capacity > 500
-        try {
-            System.out.println("\n\nPart One\n\n");
-            session = sessionFactory.openSession();
-            tx = session.beginTransaction();
 
-            // TODO update HQL
-//            List<Flight> flights = session.createQuery("from Flight").list();
+        // a) Flights leaving USA capacity > 500
+        apply(session -> {
+            System.out.println("\n\nPart One\n\n");
+
             Query query = session.createQuery("select distinct f from " +
                     "Flight f where f.origin.country = 'USA' AND f.airplane.capacity > 500");
             // from Flight where origin.country='USA' AND destination.country<>'USA' AND airplane.capacity>500;
@@ -58,26 +47,11 @@ public class App {
                         flight.getDestination().getCity(), flight
                         .getArrivalDate(), flight.getArrivalTime());
             }
-            tx.commit();
-        } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
-                e.printStackTrace(System.err);
-            }
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
+        });
 
         // b) All airlines that use A380 airplanes
-        System.out.println("\n\nPart Two\n\n");
-        try {
-            session = sessionFactory.openSession();
-            tx = session.beginTransaction();
-
-            // TODO update HQL
-            @SuppressWarnings("unchecked")
+        apply(session -> {
+            System.out.println("\n\nPart Two\n\n");
             List<Airline> airlines = session
                     .createQuery("select a from Airline a join Flight f on a.id=f.airline.id where f.airplane.model='A380'").list();
             // select a, f from Airline a join Flight f on a.id=f.airline.id where f.airplane.model='A380'
@@ -86,26 +60,11 @@ public class App {
             for (Airline airline : airlines) {
                 System.out.printf("%-15s\n", airline.getName());
             }
-            tx.commit();
-        } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
-                e.printStackTrace(System.err);
-            }
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
+        });
 
         // c) Flights using 747 planes that don't belong to Star Alliance
-        System.out.println("\n\nPart Three\n\n");
-        try {
-            session = sessionFactory.openSession();
-            tx = session.beginTransaction();
-
-            // TODO update HQL
-            @SuppressWarnings("unchecked")
+        apply(session -> {
+            System.out.println("\n\nPart Three\n\n");
             List<Flight> flights = session.createQuery("select distinct f from Flight f " +
                     "where f.airplane.model='747' AND f.airline.name <> 'Star Alliance'").list();
             System.out.println("Flight:  Departs:     "
@@ -117,27 +76,12 @@ public class App {
                         flight.getDestination().getCity(), flight
                         .getArrivalDate(), flight.getArrivalTime());
             }
-            tx.commit();
-        } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
-                e.printStackTrace(System.err);
-            }
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
+        });
 
         // d) All flights leaving before 12pm on 08/07/2009
-        System.out.println("\n\nPart Four\n\n");
-        try {
-            session = sessionFactory.openSession();
-            tx = session.beginTransaction();
-
-            // TODO update HQL
-            @SuppressWarnings("unchecked")
-            List<Flight> flights = session.createQuery("from Flight").list();
+        apply(session -> {
+            System.out.println("\n\nPart Four\n\n");
+            List<Flight> flights = session.createQuery("select f from Flight f where f.departureDate<='2009.08.07' and f.departureTime<='12:00:00'").list();
             System.out.println("Flight:  Departs:     "
                     + "                  Arrives:");
             for (Flight flight : flights) {
@@ -147,27 +91,13 @@ public class App {
                         flight.getDestination().getCity(), flight
                         .getArrivalDate(), flight.getArrivalTime());
             }
-            tx.commit();
-        } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
-                e.printStackTrace(System.err);
-            }
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
+        });
+
         System.exit(0);
     }
 
     public static void fillDataBase() {
-        Session session = null;
-        Transaction tx = null;
-
-        try {
-            session = sessionFactory.openSession();
-            tx = session.beginTransaction();
+        apply(session -> {
 
             Airport ams = new Airport("AMS", "Schiphol", "Amsterdam",
                     "The Netherlands");
@@ -236,17 +166,22 @@ public class App {
             session.persist(flight10);
             session.persist(flight11);
             session.persist(flight12);
+        });
+    }
+
+    public static void apply(Consumer<Session> consumer){
+        try {
+            final Session session = HibernateUtils.getSession(classList);
+
+            Transaction tx = session.beginTransaction();
+
+            consumer.accept(session);
 
             tx.commit();
+
+            session.close();
         } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
-                e.printStackTrace(System.err);
-            }
-        } finally {
-            if (session != null) {
-                session.close();
-            }
+            e.printStackTrace();
         }
     }
 }
