@@ -33,8 +33,8 @@ public class App {
             OrderLine ol3 = OrderLine.create(10, p3);
 
             Order order1 = Order.create(LocalDate.now());
-            Order order2 = Order.create(LocalDate.now().minusDays(1));
-            Order order3 = Order.create(LocalDate.now().minusYears(1));
+            Order order2 = Order.create(LocalDate.now().plusDays(1));
+            Order order3 = Order.create(LocalDate.now().minusWeeks(1));
 
             order1.setOderLines(Arrays.asList(ol1, ol2, ol3));
 

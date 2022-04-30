@@ -12,6 +12,7 @@ import edu.miu.cs.cs544.exercise07_1.model.Airline;
 import edu.miu.cs.cs544.exercise07_1.model.Airplane;
 import edu.miu.cs.cs544.exercise07_1.model.Airport;
 import edu.miu.cs.cs544.exercise07_1.model.Flight;
+import org.hibernate.query.Query;
 
 public class App {
 
@@ -33,7 +34,7 @@ public class App {
         Transaction tx = null;
 
         // fill the database
-        fillDataBase();
+        // fillDataBase();
 
         // a) Flights leaving USA capacity > 500
         try {
@@ -42,7 +43,11 @@ public class App {
 
             // TODO update HQL
             @SuppressWarnings("unchecked")
-            List<Flight> flights = session.createQuery("from Flight").list();
+//            List<Flight> flights = session.createQuery("from Flight").list();
+            Query query = session.createQuery("select distinct f from " +
+                    "Flight f where f.origin.country = 'USA' AND f.airplane.capacity > 500");
+
+            List<Flight> flights = query.list();
 
             System.out.println("Flight:  Departs:     "
                     + "                  Arrives:");
@@ -72,7 +77,7 @@ public class App {
 
             // TODO update HQL
             @SuppressWarnings("unchecked")
-            List<Airline> airlines = session.createQuery("from Airline").list();
+            List<Airline> airlines = session.createQuery("select distinct a from Airline a join fetch Flight f where f.airplane.model = 'A380'").list();
             System.out.println("Airlines:");
             for (Airline airline : airlines) {
                 System.out.printf("%-15s\n", airline.getName());

@@ -15,10 +15,6 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class CD extends Product{
 
-    @Id
-    @Column(name = "id", nullable = false)
-    private Long id;
-
     private String artist;
 
     public static CD create(String artist, String name, String desc) {

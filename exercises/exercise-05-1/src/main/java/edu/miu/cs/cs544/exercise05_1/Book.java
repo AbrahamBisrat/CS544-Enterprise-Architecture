@@ -15,10 +15,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Book extends Product{
 
-    @Id
-    @Column(name = "id", nullable = false)
-    private Long id;
-
     private String title;
 
     public static Book create(String title, String name, String desc) {
