@@ -17,12 +17,8 @@ import org.hibernate.query.Query;
 
 public class App {
 
-	private static List<Class> classList = Arrays.asList(
-            Airline.class,
-            Airplane.class,
-            Airport.class,
-            Flight.class
-    );
+	private static List<Class> classList =
+            Arrays.asList( Airline.class, Airplane.class, Airport.class, Flight.class );
 
     public static void main(String[] args) {
         // fill the database
@@ -191,7 +187,9 @@ public class App {
 
             Transaction tx = session.beginTransaction();
 
+            System.out.println("\nBefore Accept\n");
             consumer.accept(session);
+            System.out.println("\nAfter Accept\n");
 
             tx.commit();
 
