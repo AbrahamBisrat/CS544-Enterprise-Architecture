@@ -1,5 +1,7 @@
 package edu.miu.cs.cs544.exercise09_1;
 
+import org.hibernate.annotations.BatchSize;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -17,6 +19,7 @@ public class Owner {
     private String name;
     @OneToMany (cascade={CascadeType.PERSIST})
     @JoinColumn (name="clientid")
+	@BatchSize(size=10)
     private List<Pet> pets;
     
 	public Owner() {

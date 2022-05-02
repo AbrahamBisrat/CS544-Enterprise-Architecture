@@ -17,15 +17,18 @@ public class App {
      *
      * Benchmarks                               Time(ms)
      *
-     * Persisting each owner individually > 5542(1) +
-     *
+     * No Optimizations      > 8297(1) + 7168(2) + 7848(3)
+     * Owner's Batch Optimizations
+     * batchSize(10)
+     * batchSize(5)
+     * batchSize(50)
      *
      */
 
 	public static void main(String[] args) {
 
-        saving(1000);
-        //retrieve();
+//        saving(1000);
+        retrieve();
         System.exit(0);
 
     }
