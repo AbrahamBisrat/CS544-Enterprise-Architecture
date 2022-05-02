@@ -8,45 +8,51 @@ import java.util.function.Consumer;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 public class App {
 
     private static List<Class> classList = Arrays.asList(Owner.class, Pet.class);
+    /**
+     *
+     * Benchmarks                               Time(ms)
+     *
+     * Persisting each owner individually > 5542(1) +
+     *
+     *
+     */
 
 	public static void main(String[] args) {
 
-        firstPart();            // persisting
-        secondPart();           // retrieving
+        saving(1000);
+        //retrieve();
         System.exit(0);
 
     }
 
-    private static void firstPart() {
+    private static void saving(int owners) {
         apply(session -> {
-            for (int x = 0; x < 1000; x++) {
-                    Owner owner = new Owner("Frank" + x);
-                    List<Pet> petlist = new ArrayList<Pet>();
-                    for (int y = 0; y < 10; y++) {
-                        Pet pet = new Pet("Garfield" + x + "-" + y);
-                        petlist.add(pet);
-                    }
-                    owner.setPets(petlist);
-                    session.persist(owner);
+            for (int x = 0; x < owners; x++) {
+                Owner owner = new Owner("Frank" + x);
+                List<Pet> petlist = new ArrayList<Pet>();
+                for (int y = 0; y < 10; y++) {
+                    Pet pet = new Pet("Garfield" + x + "-" + y);
+                    petlist.add(pet);
                 }
+                owner.setPets(petlist);
+                session.persist(owner);
+            }
         });
     }
 
-    private static void secondPart() {
+    private static void retrieve() {
         apply(session -> {
             // start time
             long start = System.nanoTime();
             Criteria criteria = session.createCriteria(Owner.class);
+            List<Owner> owners = criteria.list();
 
-            List<Owner> ownerlist = criteria.list();
-
-            for (Owner owner : ownerlist) {
+            for (Owner owner : owners) {
                 for (Pet pet : owner.getPets()) {
                     System.out.println("Owner name= " + owner.getName()
                             + "pet name= " + pet.getName());
