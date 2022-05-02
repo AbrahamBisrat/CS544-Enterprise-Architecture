@@ -19,7 +19,7 @@ public class Owner {
     private String name;
     @OneToMany (cascade={CascadeType.PERSIST})
     @JoinColumn (name="clientid")
-	@BatchSize(size=10)
+	@BatchSize(size=100)
     private List<Pet> pets;
     
 	public Owner() {

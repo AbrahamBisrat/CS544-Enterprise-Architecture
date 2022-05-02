@@ -14,14 +14,18 @@ public class App {
 
     private static List<Class> classList = Arrays.asList(Owner.class, Pet.class);
     /**
+     * Disclaimer: MySql server is running on Home-server one hop away
      *
-     * Benchmarks                               Time(ms)
+     * @Benchmarks                               @Time(ms)
      *
-     * No Optimizations      > 8297(1) + 7168(2) + 7848(3)
+     * No Optimizations      > 8297(1) + 7168(2) + 7848(3) + 7142(4) + 6935(5)
+     *
      * Owner's Batch Optimizations
-     * batchSize(10)
-     * batchSize(5)
-     * batchSize(50)
+     * @batchSize(10)         > 2378(1) + 2374(2) + 2492(3) + 1792(4) + 2180(5)
+     * @batchSize(5)          > 3835(1) + 4083(2) + 4951(3) + 2460(4) + 2581(5)
+     * @batchSize(50)         > 1269(1) + 1483(2) + 1119(3) + 1235(4) + 1148(5)
+     * @batchSize(100)        > 1155(1) + 1037(2) + 1144(3) + 1904(4) + 1135(5)
+     * @batchSize(1000)       > 1399(1) + 1572(2) + 760(3) + 649(4) + 742(5)
      *
      */
 
