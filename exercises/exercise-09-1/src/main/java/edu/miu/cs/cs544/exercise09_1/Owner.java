@@ -1,6 +1,5 @@
 package edu.miu.cs.cs544.exercise09_1;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.BatchSize;
@@ -20,7 +19,6 @@ import javax.persistence.OneToMany;
 @Data
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 public class Owner {
 	@Id  
     @GeneratedValue
@@ -31,5 +29,10 @@ public class Owner {
 //	@BatchSize(size=100)
 //	@Fetch(value = FetchMode.SUBSELECT)
     private List<Pet> pets;
-    
+
+	public Owner(String name) {
+		super();
+		this.name = name;
+	}
+
 }
