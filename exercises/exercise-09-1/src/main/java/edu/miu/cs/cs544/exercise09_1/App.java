@@ -28,7 +28,8 @@ import javax.persistence.criteria.Root;
  * @FetchJoin on * Criteria in Application.java
  *                        > 1229(1) + 1638(2) + 2074(3) + 1090(4) + 1157(5)
  * @Fetch(FetchMode.JOIN)
- *                        > 1440(1) + 1217(2) + 1352(3) +
+ *                        > 1440(1) + 1217(2) + 1352(3) + 1321(4) + 1287(5)
+ *
  *
  */
 
