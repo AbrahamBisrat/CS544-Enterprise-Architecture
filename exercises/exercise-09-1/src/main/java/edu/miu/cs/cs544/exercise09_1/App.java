@@ -7,8 +7,6 @@ import java.util.function.Consumer;
 
 import org.hibernate.*;
 
-import javax.persistence.criteria.Root;
-
 /**
  * Disclaimer: MySql server is running on Home-server one hop away
  *
@@ -27,9 +25,11 @@ import javax.persistence.criteria.Root;
  *                        > 855(1) + 748(2) + 700(3) + 724(4) + 685(5)
  * @FetchJoin on * Criteria in Application.java
  *                        > 1229(1) + 1638(2) + 2074(3) + 1090(4) + 1157(5)
- * @Fetch(FetchMode.JOIN)
+ * @Fetch(FetchMode.JOIN) => Bring all the children along with the queried object
  *                        > 1440(1) + 1217(2) + 1352(3) + 1321(4) + 1287(5)
  *
+ * @FetchType.EAGER       > 1493(1) + 1203(2) + 1175(3) + 1219(4) + 1193(5)
+ * @FetchType.Lazy        > 10807(1) + 8667(2) + 6641(3) + 6991(4) + 7190(5)
  *
  */
 
@@ -48,10 +48,10 @@ public class App {
     private static void saving(int owners) {
         apply(session -> {
             for (int x = 0; x < owners; x++) {
-                Owner owner = new Owner("Frank" + x);
+                Owner owner = Owner.create("Frank" + x);
                 List<Pet> petlist = new ArrayList<Pet>();
                 for (int y = 0; y < 10; y++) {
-                    Pet pet = new Pet("Garfield" + x + "-" + y);
+                    Pet pet = Pet.create("Garfield" + x + "-" + y);
                     petlist.add(pet);
                 }
                 owner.setPets(petlist);
@@ -64,14 +64,13 @@ public class App {
         apply(session -> {
             // start time
             long start = System.nanoTime();
-            Criteria criteria = session.createCriteria(Owner.class);
-//            Criteria criteria = session.createCriteria(Owner.class).setFetchMode("pets", FetchMode.JOIN);
+            Criteria criteria = session.createCriteria(Owner.class);//.setFetchMode("pets", FetchMode.JOIN);
             List<Owner> owners = criteria.list();
 
             for (Owner owner : owners) {
                 for (Pet pet : owner.getPets()) {
                     System.out.println("Owner name= " + owner.getName()
-                            + "pet name= " + pet.getName());
+                            + "\tpet name= " + pet.getName());
                 }
             }
 

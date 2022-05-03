@@ -1,25 +1,24 @@
 package edu.miu.cs.cs544.exercise09_1;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-@Setter @Getter
+@Data
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class Pet {
 	@Id  
     @GeneratedValue
     private int id;
     private String name;
 
-	public Pet(String name) {
-		super();
-		this.name = name;
+	public static Pet create(String name) {
+		return new Pet().builder().name(name).build();
 	}
 
 }

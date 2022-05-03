@@ -1,5 +1,7 @@
 package edu.miu.cs.cs544.exercise09_1;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.BatchSize;
@@ -9,31 +11,27 @@ import org.hibernate.annotations.Subselect;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Data
+@Builder
 @Entity
+@AllArgsConstructor
 @NoArgsConstructor
 public class Owner {
-	@Id  
+	@Id
     @GeneratedValue
     private int id;
     private String name;
-    @OneToMany (cascade={CascadeType.PERSIST})
+    @OneToMany (cascade={CascadeType.PERSIST})//, fetch = FetchType.LAZY)
     @JoinColumn (name="clientid")
-//	@BatchSize(size=100)
+//	@BatchSize(size=1000)
 //	@Fetch(value = FetchMode.SUBSELECT)
-    @Fetch(FetchMode.JOIN)
+//  @Fetch(FetchMode.JOIN)
     private List<Pet> pets;
 
-	public Owner(String name) {
-		super();
-		this.name = name;
+	public static Owner create(String name) {
+		return new Owner().builder().name(name).build();
 	}
 
 }
