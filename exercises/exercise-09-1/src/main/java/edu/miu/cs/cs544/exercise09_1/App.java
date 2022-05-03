@@ -27,7 +27,8 @@ import javax.persistence.criteria.Root;
  *                        > 855(1) + 748(2) + 700(3) + 724(4) + 685(5)
  * @FetchJoin on * Criteria in Application.java
  *                        > 1229(1) + 1638(2) + 2074(3) + 1090(4) + 1157(5)
- *
+ * @Fetch(FetchMode.JOIN)
+ *                        > 1440(1) + 1217(2) + 1352(3) +
  *
  */
 
@@ -62,7 +63,8 @@ public class App {
         apply(session -> {
             // start time
             long start = System.nanoTime();
-            Criteria criteria = session.createCriteria(Owner.class).setFetchMode("pets", FetchMode.JOIN);
+            Criteria criteria = session.createCriteria(Owner.class);
+//            Criteria criteria = session.createCriteria(Owner.class).setFetchMode("pets", FetchMode.JOIN);
             List<Owner> owners = criteria.list();
 
             for (Owner owner : owners) {

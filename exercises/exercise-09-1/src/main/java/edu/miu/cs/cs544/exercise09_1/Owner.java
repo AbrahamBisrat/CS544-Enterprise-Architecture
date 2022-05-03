@@ -28,6 +28,7 @@ public class Owner {
     @JoinColumn (name="clientid")
 //	@BatchSize(size=100)
 //	@Fetch(value = FetchMode.SUBSELECT)
+    @Fetch(FetchMode.JOIN)
     private List<Pet> pets;
 
 	public Owner(String name) {
