@@ -3,8 +3,11 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
-    <bean id="productService" class="edu.miu.cs.cs544.exercise11_2.ProductService" />
-    <bean id="ProductService" class="edu.miu.cs.cs544.exercise11_2.ProductService" />
+
+    <bean id="productService" class="edu.miu.cs.cs544.exercise11_2.ProductService" >
+        <property name="inventoryService" ref="inventoryService" />
+    </bean>
+
     <bean id="inventoryService" class="edu.miu.cs.cs544.exercise11_2.InventoryService" />
 
 </beans>

@@ -12,8 +12,8 @@ public class App
 		IProductService productService =
 				context.getBean("productService", IProductService.class);
 
-//		IInventoryService inventoryService =
-//				context.getBean("inventoryService", IInventoryService.class);
+		IInventoryService inventoryService =
+				context.getBean("inventoryService", IInventoryService.class);
 
 		Product product1 = productService.getProduct(423);
 		if (product1 != null) {
