@@ -41,6 +41,8 @@ public class App {
 
 //        saving(1000);
         retrieve();
+        retrieve();
+
         System.exit(0);
 
     }
