@@ -3,8 +3,7 @@ package edu.miu.cs.cs544.exercise13_1;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class App 
-{
+public class App {
 	public static void main(String[] args) {
 		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext(
@@ -15,4 +14,5 @@ public class App
 		customerService.addCustomer("Frank Brown", "fbrown@acme.com",
 				"mainstreet 5", "Chicago", "60613");
 	}
+
 }
