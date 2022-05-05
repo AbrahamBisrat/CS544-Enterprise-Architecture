@@ -1,12 +1,10 @@
 package edu.miu.cs.cs544.exercise13_1;
 
-
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StopWatch;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -19,6 +17,9 @@ public class mailAspect {
 
     @Pointcut("execution(* edu.miu.cs.cs544.exercise13_1.EmailSender.getOutgoingMailServer(..))")
     public void outgoingEmailCut() {}
+
+    @Pointcut("execution(* edu.miu.cs.cs544.exercise13_1.CustomerDAO.*(..))")
+    public void customerCut() {}
 
     @After("sendEmailCut()")
     public void sendMailNotifier(JoinPoint jp) {
@@ -35,6 +36,18 @@ public class mailAspect {
     @AfterReturning(pointcut = "outgoingEmailCut()", returning="retVal")
     public void outgoingNotifier(String retVal) {
         System.out.println("Outgoing mail server = " + retVal);
+    }
+
+    @Around("customerCut()")
+    public Object customerNotifier(ProceedingJoinPoint pjp) throws Throwable {
+        StopWatch sw = new StopWatch();
+        sw.start(pjp.getSignature().getName());
+        Object retVal = pjp.proceed();
+        sw.stop();
+        System.out.println("Time to execute " + pjp.getSignature().getName()
+                + "  =  " + sw.getLastTaskTimeMillis());
+
+        return retVal;
     }
 
 }
