@@ -11,10 +11,6 @@ import edu.miu.cs.cs544.exercise12_1.bank.jms.JMSSender;
 import edu.miu.cs.cs544.exercise12_1.bank.logging.ILogger;
 import edu.miu.cs.cs544.exercise12_1.bank.logging.Logger;
 
-
-
-
-
 public class AccountService implements IAccountService {
 	private IAccountDAO accountDAO;
 	private ICurrencyConverter currencyConverter;
