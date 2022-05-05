@@ -19,5 +19,6 @@ public class CustomerService implements ICustomerService {
 		customer.setAddress(address);
 		customerDAO.save(customer);
 		emailSender.sendEmail(email, "Welcome " + name + " as a new customer");
+		emailSender.getOutgoingMailServer();
 	}
 }

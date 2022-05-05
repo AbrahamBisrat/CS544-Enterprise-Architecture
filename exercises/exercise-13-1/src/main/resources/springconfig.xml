@@ -15,9 +15,13 @@
 	</bean>
 	<bean id="customerDAO"  class="edu.miu.cs.cs544.exercise13_1.CustomerDAO" />
 	<bean id="emailSender"  class="edu.miu.cs.cs544.exercise13_1.EmailSender" />
+	<bean id="mailAspect" class="edu.miu.cs.cs544.exercise13_1.mailAspect" />
 
 	<context:component-scan base-package="edu.miu.cs.cs544.exercise13_1" />
 	<context:annotation-config />
 	<aop:aspectj-autoproxy />
+<!--	<aop:config>-->
+<!--		<aop:aspect id="mailAspectId" ref="mailAspect" />-->
+<!--	</aop:config>-->
 
 </beans>
