@@ -10,19 +10,15 @@ import edu.miu.cs.cs544.exercise12_1.bank.jms.IJMSSender;
 import edu.miu.cs.cs544.exercise12_1.bank.jms.JMSSender;
 import edu.miu.cs.cs544.exercise12_1.bank.logging.ILogger;
 import edu.miu.cs.cs544.exercise12_1.bank.logging.Logger;
+import lombok.Setter;
+import org.springframework.stereotype.Component;
 
+@Setter
 public class AccountService implements IAccountService {
 	private IAccountDAO accountDAO;
 	private ICurrencyConverter currencyConverter;
 	private IJMSSender jmsSender;
 	private ILogger logger;
-	
-	public AccountService(){
-		accountDAO=new AccountDAO();
-		currencyConverter= new CurrencyConverter();
-		jmsSender =  new JMSSender();
-		logger = new Logger();
-	}
 
 	public Account createAccount(long accountNumber, String customerName) {
 		Account account = new Account(accountNumber);

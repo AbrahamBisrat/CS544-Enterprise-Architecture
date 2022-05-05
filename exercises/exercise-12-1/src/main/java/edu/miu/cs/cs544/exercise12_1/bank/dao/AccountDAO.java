@@ -3,6 +3,7 @@ package edu.miu.cs.cs544.exercise12_1.bank.dao;
 import java.util.*;
 
 import edu.miu.cs.cs544.exercise12_1.bank.domain.Account;
+import org.springframework.stereotype.Component;
 
 public class AccountDAO implements IAccountDAO {
 	Collection<Account> accountlist = new ArrayList<Account>();
