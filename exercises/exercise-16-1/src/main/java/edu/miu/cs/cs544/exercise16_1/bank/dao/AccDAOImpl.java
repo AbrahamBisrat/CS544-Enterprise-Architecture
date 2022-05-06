@@ -6,6 +6,8 @@ import org.hibernate.SessionFactory;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.Root;
 import java.util.Collection;
 import java.util.List;
 
@@ -30,6 +32,7 @@ public class AccDAOImpl implements AccountDAO{
     }
 
     @Override public Collection<Account> getAccounts() {
+
         return loadAllData(Account.class, sf.getCurrentSession());
     }
 
@@ -38,6 +41,7 @@ public class AccDAOImpl implements AccountDAO{
         CriteriaQuery<T> criteria = builder.createQuery(type);
         criteria.from(type);
         List<T> data = session.createQuery(criteria).list();//.getResultList();
+        //data.size(); // Sneaky way of loading all the data out of the proxy
         return data;
     }
 }
