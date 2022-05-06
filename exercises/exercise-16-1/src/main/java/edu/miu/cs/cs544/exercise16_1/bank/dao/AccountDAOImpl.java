@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import edu.miu.cs.cs544.exercise16_1.bank.domain.Account;
+import org.springframework.stereotype.Service;
 
 public class AccountDAOImpl implements AccountDAO {
 	Collection<Account> accountlist = new ArrayList<Account>();

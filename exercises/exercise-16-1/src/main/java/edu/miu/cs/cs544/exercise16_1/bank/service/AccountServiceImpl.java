@@ -2,26 +2,34 @@ package edu.miu.cs.cs544.exercise16_1.bank.service;
 
 import java.util.Collection;
 
+import edu.miu.cs.cs544.exercise16_1.bank.dao.AccDAOImpl;
 import edu.miu.cs.cs544.exercise16_1.bank.dao.AccountDAO;
 import edu.miu.cs.cs544.exercise16_1.bank.dao.AccountDAOImpl;
+import edu.miu.cs.cs544.exercise16_1.bank.dao.HibernateUtils;
 import edu.miu.cs.cs544.exercise16_1.bank.domain.Account;
 import edu.miu.cs.cs544.exercise16_1.bank.domain.Customer;
 import edu.miu.cs.cs544.exercise16_1.bank.jms.JMSSender;
 import edu.miu.cs.cs544.exercise16_1.bank.jms.JMSSenderImpl;
 import edu.miu.cs.cs544.exercise16_1.bank.logging.Logger;
 import edu.miu.cs.cs544.exercise16_1.bank.logging.LoggerImpl;
+import org.hibernate.SessionFactory;
+import org.hibernate.service.Service;
 
 public class AccountServiceImpl implements AccountService {
 	private AccountDAO accountDAO;
 	private CurrencyConverter currencyConverter;
 	private JMSSender jmsSender;
 	private Logger logger;
+
+	private SessionFactory sf;
 	
 	public AccountServiceImpl(){
 		accountDAO=new AccountDAOImpl();
+//		accountDAO=new AccDAOImpl();
 		currencyConverter= new CurrencyConverterImpl();
 		jmsSender =  new JMSSenderImpl();
 		logger = new LoggerImpl();
+		sf = HibernateUtils.getSessionFactory();
 	}
 
 	public Account createAccount(long accountNumber, String customerName) {

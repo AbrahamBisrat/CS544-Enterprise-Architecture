@@ -19,7 +19,7 @@ public class HibernateUtils {
         if (sessionFactory == null) {
             try {
                 Properties settings = new Properties();
-                settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
+                settings.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
                 settings.put(Environment.URL, "jdbc:mysql://172.17.18.6:3306/cs544Ex5?useSSL=false"); // Home server
                 settings.put(Environment.USER, "reconov");
                 settings.put(Environment.PASS, "reconov");

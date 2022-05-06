@@ -11,13 +11,15 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+//@NoArgsConstructor
 public class Account {
 	
 	@Id
-	final long accountNumber;
+	private final long accountNumber;
 	
 	@ElementCollection
 	Collection<AccountEntry> entryList = new ArrayList<AccountEntry>();
