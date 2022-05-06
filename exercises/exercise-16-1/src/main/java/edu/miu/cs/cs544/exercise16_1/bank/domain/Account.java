@@ -4,25 +4,29 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @Entity
-//@NoArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class Account {
 	
 	@Id
-	private final long accountNumber;
-	
+	private long accountNumber;
+
+	public static Account create(long accNum) {
+		return new Account().builder().accountNumber(accNum).build();
+	}
+
 	@ElementCollection
-	Collection<AccountEntry> entryList = new ArrayList<AccountEntry>();
+	Collection<AccountEntry> entryList = new ArrayList<>();
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	Customer customer;

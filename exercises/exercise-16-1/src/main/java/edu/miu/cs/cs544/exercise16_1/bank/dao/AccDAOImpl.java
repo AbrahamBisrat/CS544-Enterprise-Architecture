@@ -13,6 +13,7 @@ public class AccDAOImpl implements AccountDAO{
     private SessionFactory sf = HibernateUtils.getSessionFactory();
 
     @Override public void saveAccount(Account account) {
+        System.out.println("account = " + account);
         sf.getCurrentSession().persist(account);
     }
 
