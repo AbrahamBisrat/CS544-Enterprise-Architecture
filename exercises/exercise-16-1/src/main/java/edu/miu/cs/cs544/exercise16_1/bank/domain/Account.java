@@ -25,7 +25,7 @@ public class Account {
 		return new Account().builder().accountNumber(accNum).build();
 	}
 
-	@ElementCollection
+	@ElementCollection(fetch = FetchType.EAGER)
 	Collection<AccountEntry> entryList = new ArrayList<>();
 	
 	@ManyToOne(cascade = CascadeType.ALL)

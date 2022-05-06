@@ -37,7 +37,7 @@ public class AccDAOImpl implements AccountDAO{
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<T> criteria = builder.createQuery(type);
         criteria.from(type);
-        List<T> data = session.createQuery(criteria).getResultList();
+        List<T> data = session.createQuery(criteria).list();//.getResultList();
         return data;
     }
 }

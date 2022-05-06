@@ -7,6 +7,7 @@ import edu.miu.cs.cs544.exercise16_1.bank.domain.AccountEntry;
 import edu.miu.cs.cs544.exercise16_1.bank.domain.Customer;
 import edu.miu.cs.cs544.exercise16_1.bank.service.AccountService;
 import edu.miu.cs.cs544.exercise16_1.bank.service.AccountServiceImpl;
+import org.hibernate.Transaction;
 
 public class Application {
 	public static void main(String[] args) {		
