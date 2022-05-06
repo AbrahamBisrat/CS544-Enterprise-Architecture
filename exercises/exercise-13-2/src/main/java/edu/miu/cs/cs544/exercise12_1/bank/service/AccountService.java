@@ -1,28 +1,34 @@
-package edu.miu.cs.cs544.exercise16_1.bank.service;
+package edu.miu.cs.cs544.exercise12_1.bank.service;
 
 import java.util.Collection;
 
-import edu.miu.cs.cs544.exercise16_1.bank.dao.AccountDAO;
-import edu.miu.cs.cs544.exercise16_1.bank.dao.AccountDAOImpl;
-import edu.miu.cs.cs544.exercise16_1.bank.domain.Account;
-import edu.miu.cs.cs544.exercise16_1.bank.domain.Customer;
-import edu.miu.cs.cs544.exercise16_1.bank.jms.JMSSender;
-import edu.miu.cs.cs544.exercise16_1.bank.jms.JMSSenderImpl;
-import edu.miu.cs.cs544.exercise16_1.bank.logging.Logger;
-import edu.miu.cs.cs544.exercise16_1.bank.logging.LoggerImpl;
+import edu.miu.cs.cs544.exercise12_1.bank.dao.AccountDAO;
+import edu.miu.cs.cs544.exercise12_1.bank.dao.IAccountDAO;
+import edu.miu.cs.cs544.exercise12_1.bank.domain.Account;
+import edu.miu.cs.cs544.exercise12_1.bank.domain.Customer;
+import edu.miu.cs.cs544.exercise12_1.bank.jms.IJMSSender;
+import edu.miu.cs.cs544.exercise12_1.bank.jms.JMSSender;
+import edu.miu.cs.cs544.exercise12_1.bank.logging.ILogger;
+import lombok.Setter;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class AccountServiceImpl implements AccountService {
-	private AccountDAO accountDAO;
-	private CurrencyConverter currencyConverter;
-	private JMSSender jmsSender;
-	private Logger logger;
-	
-	public AccountServiceImpl(){
-		accountDAO=new AccountDAOImpl();
-		currencyConverter= new CurrencyConverterImpl();
-		jmsSender =  new JMSSenderImpl();
-		logger = new LoggerImpl();
+@Setter
+public class AccountService implements IAccountService {
+	ConfigurableApplicationContext contextAccountDao =
+			new ClassPathXmlApplicationContext("springdaoconfig.xml");
+	ConfigurableApplicationContext contextJms =
+			new ClassPathXmlApplicationContext("springjmsconfig.xml");
+
+
+	private IAccountDAO accountDAO = contextAccountDao.getBean("accountDAO", AccountDAO.class);
+	private IJMSSender jmsSender = contextJms.getBean("jmsSender", JMSSender.class);
+	{
+		System.out.println("contextAccountDao = " + accountDAO);
+		System.out.println("contextJmsConfig = " + jmsSender);
 	}
+	private ICurrencyConverter currencyConverter;
+	private ILogger logger;
 
 	public Account createAccount(long accountNumber, String customerName) {
 		Account account = new Account(accountNumber);

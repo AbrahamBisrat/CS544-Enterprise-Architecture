@@ -10,4 +10,5 @@ public class EmailSender implements IEmailSender {
 	public void sendEmail (String email, String message){
 		System.out.println("EmailSender: sending '"+message+"' to "+email );
 	}
+
 }
