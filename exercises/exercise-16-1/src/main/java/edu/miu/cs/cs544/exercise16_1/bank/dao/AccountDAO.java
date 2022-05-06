@@ -7,8 +7,8 @@ import edu.miu.cs.cs544.exercise16_1.bank.domain.Account;
 
 
 public interface AccountDAO {
-	public void saveAccount(Account account);
-	public void updateAccount(Account account);
-	public Account loadAccount(long accountnumber);
-	public Collection<Account> getAccounts();
+	void saveAccount(Account account);
+	void updateAccount(Account account);
+	Account loadAccount(long accountnumber);
+	Collection<Account> getAccounts();
 }
