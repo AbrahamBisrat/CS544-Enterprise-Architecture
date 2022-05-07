@@ -5,10 +5,10 @@
 <hibernate-configuration>
 	<session-factory>
 		<!-- HSQL DB running on localhost -->
-        <property name="connection.url">jdbc:mysql://localhost/cs544</property>
+        <property name="connection.url">jdbc:mysql://localhost/cs544Ex16_2</property>
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="connection.username">root</property>
-        <property name="connection.password"></property>
+        <property name="connection.username">reconov</property>
+        <property name="connection.password">reconov</property>
         <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
 
 		<!-- Use the Hibernate built-in pool for tests. -->
