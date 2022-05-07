@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 public class BillingServiceImpl implements BillingService {
 
     @Override
-    @Scheduled(cron="0/7 * * * * *")
+    @Scheduled(cron="0/5 * * * * *")
     public void printBills() {
         Date date = Calendar.getInstance().getTime();
         DateFormat timeFormatter = DateFormat.getTimeInstance(DateFormat.DEFAULT);

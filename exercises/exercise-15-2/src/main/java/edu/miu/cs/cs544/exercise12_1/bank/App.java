@@ -10,7 +10,6 @@ import edu.miu.cs.cs544.exercise12_1.bank.service.IAccountService;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-
 public class App {
 	public static void main(String[] args) {
 
