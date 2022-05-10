@@ -1,5 +1,8 @@
 package edu.miu.cs.cs544.exercise05_1;
 
+import com.github.javafaker.Faker;
+import com.github.javafaker.service.FakeValuesService;
+import com.github.javafaker.service.RandomService;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -7,7 +10,10 @@ import org.hibernate.Transaction;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.function.Consumer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class App {
 
@@ -17,10 +23,34 @@ public class App {
 
     public static void main(String[] args) {
         // tests();
-        fakerApiTest();
+        // fakerApiServicesTest();
+        fakerClassTest();
+        
     }
 
-    private static void fakerApiTest() {
+    private static void fakerClassTest() {
+        Faker faker = new Faker();
+
+        String streetName = faker.address().streetName();
+        String city = faker.address().city();
+        String country = faker.country().name();
+
+        System.out.println("Address generation "
+                + "\n" + streetName
+                + "\n" + city
+                + "\n" + country);
+
+    }
+
+    private static void fakerApiServicesTest() {
+        FakeValuesService faker = new FakeValuesService(
+                new Locale("en-GB"), new RandomService());
+
+        String alphaNumericString = faker.regexify("[a-z]-9]{10}");
+        Matcher alphaNumericMatcher = Pattern.compile("[a-z]-9]{10}").matcher(alphaNumericString);
+
+        System.out.println(alphaNumericString);
+        System.out.println(alphaNumericMatcher);
 
     }
 
