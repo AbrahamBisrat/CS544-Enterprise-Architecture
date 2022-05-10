@@ -22,3 +22,5 @@ spring:
   logging:
     file:
       name: /Coding/Logging/${spring.application.name}/log
+server:
+  port: 4000
