@@ -31,6 +31,24 @@ public class App {
     private static void fakerClassTest() {
         Faker faker = new Faker();
 
+        addressGeneration(faker);
+        rickAndMorty(faker);
+    }
+
+    private static void rickAndMorty(Faker faker) {
+        String character = faker.rickAndMorty().character();
+        String roles = faker.rickAndMorty().character().intern();
+        String coolQuote = faker.rickAndMorty().quote();
+        String location = faker.rickAndMorty().location();
+
+        System.out.println("\nRick and morty generation test "
+                            + "\n" + character
+                            + "\n" + roles
+                            + "\n" + coolQuote
+                            + "\n" + location );
+    }
+
+    private static void addressGeneration(Faker faker) {
         String streetName = faker.address().streetName();
         String city = faker.address().city();
         String country = faker.country().name();
@@ -39,7 +57,6 @@ public class App {
                 + "\n" + streetName
                 + "\n" + city
                 + "\n" + country);
-
     }
 
     private static void fakerApiServicesTest() {
