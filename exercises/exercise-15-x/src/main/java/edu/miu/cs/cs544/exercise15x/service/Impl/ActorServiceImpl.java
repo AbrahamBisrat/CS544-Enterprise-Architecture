@@ -3,6 +3,7 @@ package edu.miu.cs.cs544.exercise15x.service.Impl;
 import edu.miu.cs.cs544.exercise15x.domain.Actor;
 import edu.miu.cs.cs544.exercise15x.repository.ActorRepo;
 import edu.miu.cs.cs544.exercise15x.service.ActorService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public class ActorServiceImpl implements ActorService {
 
     private ActorRepo actorRepo;
 
+    @Autowired
     public ActorServiceImpl(ActorRepo actorRepo) {
         this.actorRepo = actorRepo;
     }
