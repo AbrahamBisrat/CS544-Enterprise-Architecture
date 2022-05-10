@@ -9,6 +9,7 @@ import org.springframework.util.StopWatch;
 @Aspect
 @Component
 public class TraceAdvice {
+
 	@Around("execution(* edu.miu.cs.cs544.AccountService.*(..))")
 	public Object profile(ProceedingJoinPoint call) throws Throwable {
 		StopWatch clock = new StopWatch("");
