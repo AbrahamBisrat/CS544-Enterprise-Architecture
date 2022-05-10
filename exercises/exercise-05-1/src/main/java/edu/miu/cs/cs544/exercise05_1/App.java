@@ -11,11 +11,17 @@ import java.util.function.Consumer;
 
 public class App {
 
-    private static List<Class> classList = Arrays.asList(Book.class, CD.class, Customer.class, DVD.class,
-            Order.class, OrderLine.class, Product.class);
+    private static List<Class> classList
+            = Arrays.asList(Book.class, CD.class, Customer.class, DVD.class,
+                                Order.class, OrderLine.class, Product.class);
 
     public static void main(String[] args) {
-        tests();
+        // tests();
+        fakerApiTest();
+    }
+
+    private static void fakerApiTest() {
+
     }
 
     public static void tests() {
