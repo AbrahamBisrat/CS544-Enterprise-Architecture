@@ -31,8 +31,18 @@ public class App {
     private static void fakerClassTest() {
         Faker faker = new Faker();
 
-        addressGeneration(faker);
-        rickAndMorty(faker);
+//        addressGeneration(faker);
+//        rickAndMorty(faker);
+        nameGenerations(faker);
+    }
+
+    private static void nameGenerations(Faker faker) {
+        String animalName = faker.animal().name();
+        String aviation = faker.aviation().aircraft();
+
+        for(int i = 0; i < 100; i++)
+            System.out.println(faker.university().name());
+
     }
 
     private static void rickAndMorty(Faker faker) {
