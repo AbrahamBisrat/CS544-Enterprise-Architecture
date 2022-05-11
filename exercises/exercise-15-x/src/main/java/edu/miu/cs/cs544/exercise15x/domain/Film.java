@@ -2,11 +2,11 @@ package edu.miu.cs.cs544.exercise15x.domain;
 
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Getter
@@ -58,18 +58,17 @@ public class Film {
 
     @ToString.Exclude
     @ManyToMany(mappedBy = "films")
-    private Collection<Actor> actors = new ArrayList<>();
+//    @Fetch(value = FetchMode.SUBSELECT)
+    private Set<Actor> actors = new HashSet<>();
 
-    @Override
-    public boolean equals(Object o) {
+    @Override public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         Film film = (Film) o;
         return id != null && Objects.equals(id, film.id);
     }
 
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
         return getClass().hashCode();
     }
 }

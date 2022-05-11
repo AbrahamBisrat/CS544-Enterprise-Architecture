@@ -1,6 +1,7 @@
 package edu.miu.cs.cs544.exercise15x.controller;
 
 
+import edu.miu.cs.cs544.exercise15x.aspect.ExecutionTime;
 import edu.miu.cs.cs544.exercise15x.domain.Film;
 import edu.miu.cs.cs544.exercise15x.service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,16 +24,19 @@ public class FilmController {
         this.filmService = filmService;
     }
 
+    @ExecutionTime
     @GetMapping("/")
     public List<Film> findAll() {
         return filmService.findAll();
     }
 
+    @ExecutionTime
     @GetMapping("/{id}")
     public Optional<Film> findFilmById(@PathVariable Long id) {
         return filmService.findFilmById(id);
     }
 
+    @ExecutionTime
     @GetMapping("/title/{title}")
     public Optional<Film> findFilmByTitle(@PathVariable String title) {
         return filmService.findFilmByTitle(title);

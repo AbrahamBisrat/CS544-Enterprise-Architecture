@@ -7,9 +7,7 @@ import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Objects;
+import java.util.*;
 
 @Getter
 @Setter
@@ -40,7 +38,7 @@ public class Actor {
     @JoinTable(name = "film_actor",
             joinColumns = { @JoinColumn( name = "actor_id") },
             inverseJoinColumns = { @JoinColumn( name = "film_id") } )
-    private Collection<Film> films = new ArrayList<>();
+    private Set<Film> films = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {
@@ -54,4 +52,5 @@ public class Actor {
     public int hashCode() {
         return getClass().hashCode();
     }
+
 }

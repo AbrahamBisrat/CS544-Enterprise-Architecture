@@ -1,5 +1,6 @@
 package edu.miu.cs.cs544.exercise15x.controller;
 
+import edu.miu.cs.cs544.exercise15x.aspect.ExecutionTime;
 import edu.miu.cs.cs544.exercise15x.domain.Actor;
 import edu.miu.cs.cs544.exercise15x.service.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ public class ActorController {
     }
 
     @GetMapping("/")
+    @ExecutionTime
     public List<Actor> getAllActors() {
         return actorService.findAll();
     }
@@ -32,6 +34,7 @@ public class ActorController {
         return actorService.findActorById(id);
     }
 
+    @ExecutionTime
     @GetMapping("/firstName/{firstName}")
     public Optional<Actor> findActorByFirstName(@PathVariable String firstName) {
         return actorService.findActorByFirstName(firstName);
