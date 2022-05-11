@@ -21,7 +21,7 @@ public class ExecutionTimeAspect {
 
         clock.stop();
 
-        System.out.println("\n\n" + dash + "Time take to execute \t"
+        System.out.println("\n\n" + dash + "Time taken to execute \t"
                 + pjp.getSignature().getName() + "()"
                 + " = " + clock.getTotalTimeMillis() + " ms \t"
                 + dash + "\n\n");
