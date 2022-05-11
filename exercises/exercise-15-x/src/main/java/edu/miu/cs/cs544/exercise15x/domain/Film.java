@@ -1,5 +1,6 @@
 package edu.miu.cs.cs544.exercise15x.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.Fetch;
@@ -57,9 +58,10 @@ public class Film {
 //    private LocalDateTime lastUpdate;
 
     @ToString.Exclude
+    @JsonIgnore
     @ManyToMany(mappedBy = "films")
 //    @Fetch(value = FetchMode.SUBSELECT)
-    private Set<Actor> actors = new HashSet<>();
+    private Collection<Actor> actors = new ArrayList<>();
 
     @Override public boolean equals(Object o) {
         if (this == o) return true;
@@ -71,4 +73,5 @@ public class Film {
     @Override public int hashCode() {
         return getClass().hashCode();
     }
+
 }

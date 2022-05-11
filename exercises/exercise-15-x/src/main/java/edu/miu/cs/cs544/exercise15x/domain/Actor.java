@@ -1,5 +1,6 @@
 package edu.miu.cs.cs544.exercise15x.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.Fetch;
@@ -33,23 +34,22 @@ public class Actor {
     private LocalDateTime lastUpdate;
 
     @ManyToMany
+    @JsonIgnore
     @ToString.Exclude
-    @Fetch(value = FetchMode.SUBSELECT)
+//    @Fetch(value = FetchMode.SUBSELECT)
     @JoinTable(name = "film_actor",
             joinColumns = { @JoinColumn( name = "actor_id") },
             inverseJoinColumns = { @JoinColumn( name = "film_id") } )
-    private Set<Film> films = new HashSet<>();
+    private Collection<Film> films = new ArrayList<>();
 
-    @Override
-    public boolean equals(Object o) {
+    @Override public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         Actor actor = (Actor) o;
         return id != null && Objects.equals(id, actor.id);
     }
 
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
         return getClass().hashCode();
     }
 
