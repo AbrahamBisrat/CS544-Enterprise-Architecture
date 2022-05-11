@@ -4,25 +4,24 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "actor")
-public class Actor {
+public class Language {
 
     @Id
+    @Column(name = "language_id")
     @GeneratedValue
-    @Column(name = "actor_id")
-    private long id;
+    private Long id;
 
-    @Column(name = "first_name")
-    private String firstName;
-    @Column(name = "last_name")
-    private String lastName;
+    private String name;
     @Column(name = "last_update")
     private LocalDateTime lastUpdate;
 

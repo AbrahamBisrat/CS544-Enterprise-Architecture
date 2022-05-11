@@ -11,7 +11,7 @@ public interface ActorService {
 
     List<Actor> findAll();
 
-    Optional<Actor> findActorById(int id);
+    Optional<Actor> findActorById(Long id);
 
     Optional<Actor> findActorByFirstName(String firstName);
 

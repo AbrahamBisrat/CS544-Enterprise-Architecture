@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ActorRepo extends CrudRepository<Actor, Integer> {
+public interface ActorRepo extends CrudRepository<Actor, Long> {
 
     List<Actor> findAll();
 
-    Optional<Actor> findActorById(int id);
+    Optional<Actor> findActorById(long id);
 
     Optional<Actor> findActorByFirstName(String firstName);
 

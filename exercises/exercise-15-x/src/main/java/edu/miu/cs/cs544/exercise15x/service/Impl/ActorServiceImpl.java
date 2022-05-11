@@ -23,7 +23,7 @@ public class ActorServiceImpl implements ActorService {
         return actorRepo.findAll();
     }
 
-    @Override public Optional<Actor> findActorById(int id) {
+    @Override public Optional<Actor> findActorById(Long id) {
         return Optional.of(actorRepo.findActorById(id)).orElse(null);
     }
 

@@ -28,8 +28,13 @@ public class ActorController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Actor> findActorById(@PathVariable int id) {
+    public Optional<Actor> findActorById(@PathVariable Long id) {
         return actorService.findActorById(id);
+    }
+
+    @GetMapping("/firstName/{firstName}")
+    public Optional<Actor> findActorByFirstName(@PathVariable String firstName) {
+        return actorService.findActorByFirstName(firstName);
     }
 
 }
