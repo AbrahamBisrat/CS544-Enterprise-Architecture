@@ -1,8 +1,0 @@
-{
-  "properties": [
-    {
-      "name": "spring.logging.file.name",
-      "type": "java.lang.String",
-      "description": "Description for spring.logging.file.name."
-  }
-] }
