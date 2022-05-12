@@ -1,24 +1,28 @@
 package edu.miu.cs.cs544.exercise15x.service.Impl;
 
 import edu.miu.cs.cs544.exercise15x.domain.Actor;
+import edu.miu.cs.cs544.exercise15x.domain.dto.ActorDto;
 import edu.miu.cs.cs544.exercise15x.repository.ActorRepo;
 import edu.miu.cs.cs544.exercise15x.service.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class ActorServiceImpl implements ActorService {
 
-    private ActorRepo actorRepo;
+    private final ActorRepo actorRepo;
 
     @Autowired
     public ActorServiceImpl(ActorRepo actorRepo) {
         this.actorRepo = actorRepo;
     }
 
+    // make this method level transaction - readOnly Tx
     @Override public List<Actor> findAll() {
         return actorRepo.findAll();
     }
@@ -30,4 +34,9 @@ public class ActorServiceImpl implements ActorService {
     @Override public Optional<Actor> findActorByFirstName(String firstName) {
         return Optional.of(actorRepo.findActorByFirstName(firstName)).orElse(null);
     }
+
+    @Override public void update(ActorDto actorDto) {
+        actorRepo.save(actorDto);
+    }
+
 }

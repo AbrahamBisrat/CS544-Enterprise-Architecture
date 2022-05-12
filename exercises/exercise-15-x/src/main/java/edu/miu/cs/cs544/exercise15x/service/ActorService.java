@@ -1,6 +1,7 @@
 package edu.miu.cs.cs544.exercise15x.service;
 
 import edu.miu.cs.cs544.exercise15x.domain.Actor;
+import edu.miu.cs.cs544.exercise15x.domain.dto.ActorDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,5 +15,7 @@ public interface ActorService {
     Optional<Actor> findActorById(Long id);
 
     Optional<Actor> findActorByFirstName(String firstName);
+
+    void update(ActorDto actorDto);
 
 }

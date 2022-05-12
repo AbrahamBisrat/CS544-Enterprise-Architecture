@@ -1,6 +1,7 @@
 package edu.miu.cs.cs544.exercise15x.repository;
 
 import edu.miu.cs.cs544.exercise15x.domain.Actor;
+import edu.miu.cs.cs544.exercise15x.domain.dto.ActorDto;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +16,7 @@ public interface ActorRepo extends CrudRepository<Actor, Long> {
     Optional<Actor> findActorById(long id);
 
     Optional<Actor> findActorByFirstName(String firstName);
+
+    void save(ActorDto actorDto);
 
 }
