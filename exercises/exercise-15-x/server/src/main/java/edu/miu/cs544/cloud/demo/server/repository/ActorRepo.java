@@ -1,7 +1,7 @@
 package edu.miu.cs544.cloud.demo.server.repository;
 
 import edu.miu.cs544.cloud.demo.server.domain.Actor;
-import edu.miu.cs544.cloud.demo.server.models.ActorDto;
+import edu.miu.cs544.cloud.demo.server.model.ActorDto;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

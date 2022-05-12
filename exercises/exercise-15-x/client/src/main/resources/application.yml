@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: spring-cloud-client
+logging:
+  file:
+    name: /Coding/Logging/${spring.application.name}/log
+server:
+  port: 3000
+base-service-url: http://localhost:4000/api

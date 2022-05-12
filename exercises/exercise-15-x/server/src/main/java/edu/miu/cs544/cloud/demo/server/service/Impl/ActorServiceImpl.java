@@ -1,7 +1,7 @@
 package edu.miu.cs544.cloud.demo.server.service.Impl;
 
 import edu.miu.cs544.cloud.demo.server.domain.Actor;
-import edu.miu.cs544.cloud.demo.server.models.ActorDto;
+import edu.miu.cs544.cloud.demo.server.model.ActorDto;
 import edu.miu.cs544.cloud.demo.server.repository.ActorRepo;
 import edu.miu.cs544.cloud.demo.server.service.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;

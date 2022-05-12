@@ -1,4 +1,4 @@
-package edu.miu.cs544.cloud.demo.server.models;
+package edu.miu.cs544.cloud.demo.server.model;
 
 import lombok.*;
 

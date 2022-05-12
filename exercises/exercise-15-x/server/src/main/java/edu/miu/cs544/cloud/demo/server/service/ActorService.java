@@ -1,7 +1,7 @@
 package edu.miu.cs544.cloud.demo.server.service;
 
 import edu.miu.cs544.cloud.demo.server.domain.Actor;
-import edu.miu.cs544.cloud.demo.server.models.ActorDto;
+import edu.miu.cs544.cloud.demo.server.model.ActorDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

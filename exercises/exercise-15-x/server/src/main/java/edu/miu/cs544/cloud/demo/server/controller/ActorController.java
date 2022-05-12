@@ -2,7 +2,7 @@ package edu.miu.cs544.cloud.demo.server.controller;
 
 import edu.miu.cs544.cloud.demo.server.aspect.ExecutionTime;
 import edu.miu.cs544.cloud.demo.server.domain.Actor;
-import edu.miu.cs544.cloud.demo.server.models.ActorDto;
+import edu.miu.cs544.cloud.demo.server.model.ActorDto;
 import edu.miu.cs544.cloud.demo.server.service.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
