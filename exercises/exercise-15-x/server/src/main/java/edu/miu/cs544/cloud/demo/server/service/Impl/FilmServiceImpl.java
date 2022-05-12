@@ -1,8 +1,8 @@
 package edu.miu.cs544.cloud.demo.server.service.Impl;
 
-import edu.miu.cs.cs544.exercise15x.domain.Film;
-import edu.miu.cs.cs544.exercise15x.repository.FilmRepo;
-import edu.miu.cs.cs544.exercise15x.service.FilmService;
+import edu.miu.cs544.cloud.demo.server.domain.Film;
+import edu.miu.cs544.cloud.demo.server.repository.FilmRepo;
+import edu.miu.cs544.cloud.demo.server.service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

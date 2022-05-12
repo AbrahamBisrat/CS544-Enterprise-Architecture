@@ -1,9 +1,9 @@
 package edu.miu.cs544.cloud.demo.server.controller;
 
 
-import edu.miu.cs.cs544.exercise15x.aspect.ExecutionTime;
-import edu.miu.cs.cs544.exercise15x.domain.Film;
-import edu.miu.cs.cs544.exercise15x.service.FilmService;
+import edu.miu.cs544.cloud.demo.server.aspect.ExecutionTime;
+import edu.miu.cs544.cloud.demo.server.domain.Film;
+import edu.miu.cs544.cloud.demo.server.service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,8 +19,7 @@ public class FilmController {
 
     private final FilmService filmService;
 
-    @Autowired
-    public FilmController(FilmService filmService) {
+    @Autowired public FilmController(FilmService filmService) {
         this.filmService = filmService;
     }
 
