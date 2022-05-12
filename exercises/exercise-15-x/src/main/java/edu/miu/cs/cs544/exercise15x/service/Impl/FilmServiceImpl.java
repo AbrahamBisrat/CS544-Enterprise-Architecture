@@ -16,8 +16,7 @@ public class FilmServiceImpl implements FilmService {
 
     private final FilmRepo filmRepo;
 
-    @Autowired
-    public FilmServiceImpl(FilmRepo filmRepo) {
+    @Autowired public FilmServiceImpl(FilmRepo filmRepo) {
         this.filmRepo = filmRepo;
     }
 

@@ -17,8 +17,7 @@ public class ActorServiceImpl implements ActorService {
 
     private final ActorRepo actorRepo;
 
-    @Autowired
-    public ActorServiceImpl(ActorRepo actorRepo) {
+    @Autowired public ActorServiceImpl(ActorRepo actorRepo) {
         this.actorRepo = actorRepo;
     }
 

@@ -36,7 +36,6 @@ public class Actor {
     @ManyToMany
     @JsonIgnore
     @ToString.Exclude
-//    @Fetch(value = FetchMode.SUBSELECT)
     @JoinTable(name = "film_actor",
             joinColumns = { @JoinColumn( name = "actor_id") },
             inverseJoinColumns = { @JoinColumn( name = "film_id") } )

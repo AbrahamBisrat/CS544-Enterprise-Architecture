@@ -14,7 +14,7 @@ import java.util.Optional;
 @RequestMapping("api/actors")
 public class ActorController {
 
-    private ActorService actorService;
+    private final ActorService actorService;
 
     @Autowired
     public ActorController(ActorService actorService) {
@@ -38,8 +38,8 @@ public class ActorController {
         return actorService.findActorByFirstName(firstName);
     }
 
-    @ExecutionTime
     @PutMapping()
+    @ExecutionTime
     public void updateActor(@RequestBody ActorDto actorDto) {
         actorService.update(actorDto);
     }
