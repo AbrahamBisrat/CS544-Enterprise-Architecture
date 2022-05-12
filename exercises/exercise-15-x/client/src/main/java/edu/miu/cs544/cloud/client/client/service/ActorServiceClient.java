@@ -3,6 +3,7 @@ package edu.miu.cs544.cloud.client.client.service;
 import edu.miu.cs544.cloud.client.client.model.Actor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -22,8 +23,8 @@ public class ActorServiceClient {
     private String baseUrl;
 
     public List<Actor> getAllActorsFromFarAway() {
-        return Arrays.asList(restTemplate
-                .getForObject(baseUrl + "/actors/", Actor.class));
+        return List.of(restTemplate
+                .getForObject(baseUrl + "/actors/", Actor[].class));
     }
 
     public Actor getActorFromFarAwayById(int id) {

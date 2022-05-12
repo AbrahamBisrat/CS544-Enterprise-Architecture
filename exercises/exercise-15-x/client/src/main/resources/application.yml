@@ -1,6 +1,9 @@
 spring:
   application:
     name: spring-cloud-client
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
 logging:
   file:
     name: /Coding/Logging/${spring.application.name}/log

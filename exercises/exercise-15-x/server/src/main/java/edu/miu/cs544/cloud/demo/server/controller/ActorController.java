@@ -5,6 +5,7 @@ import edu.miu.cs544.cloud.demo.server.domain.Actor;
 import edu.miu.cs544.cloud.demo.server.model.ActorDto;
 import edu.miu.cs544.cloud.demo.server.service.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,9 +23,9 @@ public class ActorController {
     }
 
     @ExecutionTime
-    @GetMapping("/")
-    public List<Actor> getAllActors() {
-        return actorService.findAll();
+    @GetMapping("/") // why ResponseBody? cause I want the entire HTTP response
+    public ResponseEntity<List<Actor>> getAllActors() {
+        return ResponseEntity.ok().body(actorService.findAll());
     }
 
     @GetMapping("/{id}")
