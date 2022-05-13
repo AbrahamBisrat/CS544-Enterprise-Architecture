@@ -1,0 +1,6 @@
+server:
+  port: 8761
+eureka:
+  client:
+    register-with-eureka: false # No need to register itself
+    fetch-registry: false       # don't keep a local copy of the registry
