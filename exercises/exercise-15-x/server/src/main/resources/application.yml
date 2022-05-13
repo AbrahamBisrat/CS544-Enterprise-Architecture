@@ -23,4 +23,8 @@ logging:
   file:
     name: /Coding/Logging/${spring.application.name}/log
 server:
-  port: 4000
+  port: 0 # dynamically auto-magically assign free port - This will help with Load balancing
+#  port: 4000
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid} # unique for each instance
