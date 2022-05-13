@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+## HashiCorp secrets ##
+server/server.json
+server/src/main/java/hashicorp.txt
