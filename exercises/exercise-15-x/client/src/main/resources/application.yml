@@ -1,17 +1,10 @@
 spring:
   application:
     name: spring-cloud-client
-  jackson:
-    serialization:
-      write-dates-as-timestamps: false
-logging:
-  file:
-    name: /Coding/Logging/${spring.application.name}/log
 server:
   port: 0 # auto-magically assign me available ones => for dynamic addressing and load balancing
-#  port: 3000
 base-service-url: http://localhost:4000/api # static server address
-
-eureka:
-  instance:
-    instance-id: ${spring.application.name}:${random.uuid}
+#
+#eureka:
+#  instance:
+#    instance-id: ${spring.application.name}:${random.uuid}
