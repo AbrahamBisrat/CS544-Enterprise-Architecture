@@ -1,9 +1,9 @@
-spring:
-  application:
-    name: spring-cloud-client
-server:
-  port: 0 # auto-magically assign me available ones => for dynamic addressing and load balancing
-base-service-url: http://localhost:4000/api # static server address
+#spring:
+#  application:
+#    name: spring-cloud-client
+#server:
+#  port: 0 # auto-magically assign me available ones => for dynamic addressing and load balancing
+#base-service-url: http://localhost:4000/api # static server address
 #
 #eureka:
 #  instance:
