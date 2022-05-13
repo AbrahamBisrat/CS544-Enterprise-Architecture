@@ -5,10 +5,8 @@ import edu.miu.cs544.cloud.demo.server.aspect.ExecutionTime;
 import edu.miu.cs544.cloud.demo.server.domain.Film;
 import edu.miu.cs544.cloud.demo.server.service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,18 +23,21 @@ public class FilmController {
 
     @ExecutionTime
     @GetMapping("/")
+    @ResponseStatus(HttpStatus.OK)
     public List<Film> findAll() {
         return filmService.findAll();
     }
 
     @ExecutionTime
     @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Optional<Film> findFilmById(@PathVariable Long id) {
         return filmService.findFilmById(id);
     }
 
     @ExecutionTime
     @GetMapping("/title/{title}")
+    @ResponseStatus(HttpStatus.OK)
     public Optional<Film> findFilmByTitle(@PathVariable String title) {
         return filmService.findFilmByTitle(title);
     }
