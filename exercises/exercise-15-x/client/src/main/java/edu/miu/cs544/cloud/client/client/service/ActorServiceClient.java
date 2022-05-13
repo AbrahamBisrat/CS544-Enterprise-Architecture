@@ -24,7 +24,7 @@ public class ActorServiceClient {
 
     public List<Actor> getAllActorsFromFarAway() {
         return List.of(restTemplate
-                .getForObject(baseUrl + "/actors/", Actor[].class));
+            .getForObject(baseUrl + "/actors/", Actor[].class));
     }
 
     public Actor getActorFromFarAwayById(int id) {

@@ -24,6 +24,7 @@ logging:
     name: /Coding/Logging/${spring.application.name}/log
 server:
   port: 0 # dynamically auto-magically assign free port - This will help with Load balancing
+          # Having multiple instances of the same service
 #  port: 4000
 eureka:
   instance:
