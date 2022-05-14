@@ -1,5 +1,0 @@
-{
-  "spring.datasource.url": "jdbc:mysql://172.17.18.6:3306/sakila?useSSL=false",
-  "spring.datasource.username": "reconov",
-  "spring.datasource.password": "reconov"
-}
