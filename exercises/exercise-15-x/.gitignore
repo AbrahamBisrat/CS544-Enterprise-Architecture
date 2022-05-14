@@ -31,8 +31,3 @@ build/
 
 ### VS Code ###
 .vscode/
-
-## HashiCorp secrets ##
-server/spring-cloud-server.json
-server/src/main/java/hashicorp.txt
-client/spring-cloud-client.json
